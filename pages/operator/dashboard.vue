@@ -131,7 +131,7 @@
 <script>
 
 export default {
-   layout:'operator/operator-dashboard',
+   layout:'operator',
    data: () => ({
       labels: [
         '12am',

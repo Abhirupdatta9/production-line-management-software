@@ -1,24 +1,14 @@
 <template>
 <v-app>
-<div>
+<v-content>
   <Nuxt/>
-</div>
+</v-content>
 </v-app>
 </template>
 
 <script>
   export default {
     
-    data: () => ({
-      drawer: false,
-      group: null,
-    }),
-
-    watch: {
-      group () {
-        this.drawer = false
-      },
-    },
   }
 </script>
 

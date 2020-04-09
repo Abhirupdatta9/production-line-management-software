@@ -40,7 +40,7 @@
 
 <script>
 export default {
-    layout:'incharge/incharge-d',
+    layout:'incharge',
     data: () => ({
       cards: [
         { title: 'Line Status', content: 'Click here to check the status of any line'},

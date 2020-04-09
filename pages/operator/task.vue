@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    layout:'operator/operator-dashboard',
+    layout:'operator',
     data () {
       return {
         selected: [],

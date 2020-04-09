@@ -3,6 +3,6 @@
 </template>
 <script>
 export default {
-    layout:'incharge/incharge-d',
+    layout:'incharge',
 }
 </script>

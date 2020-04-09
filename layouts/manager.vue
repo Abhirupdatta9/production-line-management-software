@@ -1,93 +1,95 @@
 <template>
-  <div>
-    <v-app-bar
-      color="#5e35b1"
-      dark
-      fixed
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-toolbar-title>Manager</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      
-
-      <v-menu
-      transition="slide-y-transition"
-      bottom
-    >
-      <template v-slot:activator="{ on }">
-        <v-btn icon v-on="on" >
-        <v-icon >mdi-bell</v-icon>
-      </v-btn>
-        <!-- <v-btn
-          class="purple"
-          color="primary"
-          dark
-          v-on="on"
-        >
-          Slide Y Transition
-        </v-btn> -->
-      </template>
-      <v-list>
-        <v-list-item
-          v-for="(notification, i) in notifications"
-          :key="i"
-          @click=""
-          absolute
-          offset-y
-        >
-          <v-list-item-title>{{ notification.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
-
-      <v-btn icon>
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      bottom
-      temporary
-    >
-        <v-list-item two-line>
-          <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/women/81.jpg">
-          </v-list-item-avatar>
-          &nbsp;&nbsp;&nbsp;
-          <v-list-item-content>
-            <v-list-item-title>Jane Smith</v-list-item-title>
-            <v-list-item-subtitle>Logged In</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      
-
-      <v-list
-        nav
-        dense
+  <v-app>
+    <v-content>
+      <v-app-bar
+        color="#5e35b1"
+        dark
+        fixed
       >
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-          v-for="item in items" :key="item"
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Manager</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        
+
+        <v-menu
+        transition="slide-y-transition"
+        bottom
+      >
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on" >
+          <v-icon >mdi-bell</v-icon>
+        </v-btn>
+          <!-- <v-btn
+            class="purple"
+            color="primary"
+            dark
+            v-on="on"
+          >
+            Slide Y Transition
+          </v-btn> -->
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(notification, i) in notifications"
+            :key="i"
+            @click=""
+            absolute
+            offset-y
+          >
+            <v-list-item-title>{{ notification.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+        <v-btn icon>
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+      </v-app-bar>
+
+      <v-navigation-drawer
+        v-model="drawer"
+        absolute
+        bottom
+        temporary
+      >
+          <v-list-item two-line>
+            <v-list-item-avatar>
+              <img src="https://randomuser.me/api/portraits/women/81.jpg">
+            </v-list-item-avatar>
+            &nbsp;&nbsp;&nbsp;
+            <v-list-item-content>
+              <v-list-item-title>Jane Smith</v-list-item-title>
+              <v-list-item-subtitle>Logged In</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        
+
+        <v-list
+          nav
+          dense
         >
-            <v-list-item :to="item.to">
-                
-                <v-list-item-title><v-icon >{{item.icon}}</v-icon>&nbsp;&nbsp; {{item.title}}</v-list-item-title>
-            </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>  
-    <nuxt/>
-</div>
+          <v-list-item-group
+            v-model="group"
+            active-class="deep-purple--text text--accent-4"
+            v-for="item in items" :key="item"
+          >
+              <v-list-item :to="item.to">
+                  
+                  <v-list-item-title><v-icon >{{item.icon}}</v-icon>&nbsp;&nbsp; {{item.title}}</v-list-item-title>
+              </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>  
+      <nuxt/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>

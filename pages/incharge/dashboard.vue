@@ -131,7 +131,7 @@
 <script>
 
 export default {
-   layout:'incharge/incharge-d',
+   layout:'incharge',
    data: () => ({
       labels: [
         '12am',

@@ -34,7 +34,7 @@
 
 <script>
 export default {
-    layout:'incharge/incharge-d',
+    layout:'incharge',
     data: () => ({
       cards: [
         { title: 'Productivity Report', src: '/productivity.jpg', flex: 6 },
