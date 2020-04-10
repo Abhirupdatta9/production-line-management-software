@@ -5,7 +5,7 @@
       <v-row>
         <v-col >
           <v-text-field
-            label="Line Number"
+            value="Line Number : 1"
             outlined
             dense
             readonly
@@ -13,20 +13,20 @@
         </v-col>
         <v-col >
           <v-text-field
-            label="Station Number"
+            value="Station Number : 4"
             outlined
             dense
             readonly
           ></v-text-field>
         </v-col>
         <v-col >
-          <v-btn outlined >Report error</v-btn>
+          <v-btn block outlined >Report error</v-btn>
         </v-col>
         <v-col >
-          <v-btn outlined >Start scanning</v-btn>
+          <v-btn block outlined >Start scanning</v-btn>
         </v-col>
         <v-col >
-          <v-btn outlined>Stop scanning</v-btn>
+          <v-btn block outlined>Stop scanning</v-btn>
         </v-col>
       </v-row>
 
@@ -49,6 +49,14 @@
                       outlined
                       readonly
                     ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <v-btn block outlined>Accept</v-btn>
+                  </v-col>
+                  <v-col>
+                    <v-btn block outlined>Reject</v-btn>
                   </v-col>
                 </v-row>
               </v-card>
