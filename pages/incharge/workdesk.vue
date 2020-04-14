@@ -3,7 +3,7 @@
   <br><br><br><br><br>
   <v-row>
     <v-col cols="8" offset="2">
-      <v-card class="px-5 py-8" outlined height="600" >
+      <v-card class="px-5 py-8" outlined height="580" >
         <v-row>
           <v-col cols="4">
             <v-text-field
@@ -62,16 +62,14 @@
                 
                 </v-toolbar>
               </template>
-              <!-- <template  v-slot:item.assign="{ item }">
-                <v-simple-checkbox v-model="item.assign" @click="setOperator(item.assign)"></v-simple-checkbox>
-              </template> -->
+              
             </v-data-table>
           </v-col>
         </v-row>
       </v-card>
     </v-col>
   </v-row>
-  <br><br><br>
+
 </div>
 </template>
 
