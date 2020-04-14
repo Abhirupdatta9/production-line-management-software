@@ -7,7 +7,7 @@
         <v-row>
           <v-col cols="4">
             <v-text-field
-           
+            readonly
             value="Line Number : 1"
             outlined
             dense
@@ -30,9 +30,11 @@
                 </v-toolbar>
               </template>
               <template  v-slot:item.operator="{ item }">
-                <v-btn v-if="item.assigned != true" small outlined v-model="item.operator" @click="assign()">Assign</v-btn>
+                <v-btn v-if="item.assigned != true" small outlined @click="assign(item.number)">Assign</v-btn>
                 <template v-else>
+                  <!-- <template v-if=""> -->
                   {{item.operator}}
+                  <!-- </template> -->
                 </template>
               </template>
             </v-data-table>
@@ -41,23 +43,28 @@
           <!-- operators table -->
           <v-col cols="6">
             <v-data-table
+              v-model="selected"
               :headers="operator_headers"
               :items="operators"
               :items-per-page="5"
               class="elevation-1"
               :hidden="operators_hidden"
+              item-key="name"
+              show-select
+              single-select
             >
               <template v-slot:top>
                 <v-toolbar flat>
                   <v-toolbar-title>Available Operators</v-toolbar-title>
-                  <v-spacer></v-spacer>
+                  <v-spacer></v-spacer>  
+                               
                   <v-btn small @click="done()">Done</v-btn>
+                
                 </v-toolbar>
               </template>
-              <template  v-slot:item.assign="{ item }">
-                <v-simple-checkbox v-model="item.assign"></v-simple-checkbox>
-                
-              </template>
+              <!-- <template  v-slot:item.assign="{ item }">
+                <v-simple-checkbox v-model="item.assign" @click="setOperator(item.assign)"></v-simple-checkbox>
+              </template> -->
             </v-data-table>
           </v-col>
         </v-row>
@@ -73,7 +80,9 @@ export default {
     layout:'incharge',
     data: () => ({
       operators_hidden: true,
-      assigned: false,
+      selected: [],
+      station_no: '',
+      operator: false,
       headers: [
           {
             text: 'Station no',
@@ -92,7 +101,7 @@ export default {
             value: 'name',
           },
           { text: 'Skills', value: 'skills' },
-          { text: 'Assign', value: 'assign' },
+          // { text: 'Assign', value: 'assign' },
       ],
       stations: [
         {
@@ -160,39 +169,63 @@ export default {
         {
           name: 'Kaloraat',
           skills: 'I assume u know',
-          assign: false,
+          // assign: false,
         },
         {
-          name: 'Kaloraat',
+          name: 'Ryan',
           skills: 'I assume u know',
-          assign: false,
+          // assign: false,
         },
         {
-          name: 'Kaloraat',
+          name: 'Disha',
           skills: 'I assume u know',
-          assign: false,
+          // assign: false,
         },
         {
-          name: 'Kaloraat',
+          name: 'Suchismita',
           skills: 'I assume u know',
-          assign: false,
+          // assign: false,
         },
         {
-          name: 'Kaloraat',
+          name: 'Abhirup',
           skills: 'I assume u know',
-          assign: false,
+          // assign: false,
         },
       ]
 
     }),
 
     methods: {
-      assign() {
+      assign(number) {
         this.operators_hidden = false
+        this.station_no = number
+        // console.log(number)
       },
       done() {
         this.operators_hidden = true
+        // console.log(this.selected[0].name ) 
+        var sno = this.station_no
+
+        this.stations.filter( function(station) {
+          return station.number == sno
+        })[0].operator = this.selected[0].name
+
+        this.stations.filter( function(station) {
+          return station.number == sno
+        })[0].assigned = true
+        
+        var operator = this.stations.filter( function(station) {
+          return station.number == sno
+        })
+        
+        console.log(operator)
+        
+      },
+      setOperator(operator) {
+        console.log(operator)
+        
       }
+
     }
 }
 </script>
