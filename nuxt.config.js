@@ -38,6 +38,8 @@ export default {
      */
     plugins: [
         '@/plugins/particles',
+        '@plugins/axios.js',
+        '@plugins/mixins/validation.js'
     ],
 
     /*
