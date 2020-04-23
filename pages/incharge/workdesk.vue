@@ -49,7 +49,7 @@
               :items-per-page="5"
               class="elevation-1"
               :hidden="operators_hidden"
-              item-key="name"
+              item-key="email"
               show-select
               single-select
             >
@@ -214,7 +214,7 @@ export default {
 
         this.stations.filter( function(station) {
           return station.number == sno
-        })[0].operator = this.selected[0].name
+        })[0].operator = this.selected[0].email
 
         this.stations.filter( function(station) {
           return station.number == sno
