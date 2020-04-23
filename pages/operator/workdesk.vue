@@ -54,7 +54,7 @@
                 </v-row>
                 <v-row>
                   <v-col>
-                    <v-btn block outlined @click="start()">Accept</v-btn>
+                    <v-btn block outlined @click="updateScanDetails()">Accept</v-btn>
                   </v-col>
                   <v-col>
                     <v-btn block outlined @click="start()">Reject</v-btn>
@@ -126,6 +126,17 @@ export default {
             }
           ],
 
+          scanData : {
+            Sub_Assembly_ID: "",
+            Part_ID: "",
+            L_ID: "1",
+            Station_ID : "4",
+            T1 : "2020-04-07 12:10:56.333",
+            T2 : "2020-04-07 12:10:56.333",
+            Cycle_Time: "12:10:56.333",
+            Reject : "0"
+          }
+
         }
     },
     methods : {
@@ -134,9 +145,10 @@ export default {
         var max=10;  
         var random_part_id = Math.floor(Math.random() * (+max - +min)) + +min; 
         var random_sub_id = Math.floor(Math.random() * (+max - +min)) + +min; 
-        // console.log("P00M1_"+random);
-        this.part[0].value = random_part_id;
-        this.subAssembly[0].value = random_sub_id;
+        this.part[0].value = "P04M1_" + random_part_id;
+        this.scanData.Part_ID = "P04M1_" + random_part_id;
+        this.subAssembly[0].value = "P00M1_" + random_sub_id;
+        this.scanData.Sub_Assembly_ID = "P00M1_" + random_sub_id;
         this.subAssembly[1].value = 'Nano';
         this.stop();
       },
@@ -154,6 +166,12 @@ export default {
         this.subAssembly[1].value = '';
         
       },
+
+
+      async updateScanDetails() {
+        await this.$axios.$post('scan-details', this.scanData);
+        this.start();
+      }
 
     }
 }
