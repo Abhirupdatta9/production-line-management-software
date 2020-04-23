@@ -96,109 +96,117 @@ export default {
             text: 'Operator',
             align: 'start',
             sortable: false,
-            value: 'name',
+            value: 'email',
           },
-          { text: 'Skills', value: 'skills' },
+          { text: 'Rating', value: 'rating' },
           // { text: 'Assign', value: 'assign' },
       ],
       stations: [
         {
-          number: 1,
+          number: 'S01',
           name: 'Wheels',
           operator: 'honey singh' ,
-          assigned: true, 
+          assigned: false, 
         },
         {
-          number: 2,
+          number: 'S02',
           name: 'Doors',
           operator: 'honey singh' , 
           assigned: false, 
         },
         {
-          number: 3,
+          number: 'S03',
           name: 'Engine',
           operator: 'honey singh' , 
           assigned: false, 
         },
         {
-          number: 4,
+          number: 'S04',
           name: 'Dashboard',
           operator: 'honey singh' , 
           assigned: false, 
         },
         {
-          number: 5,
+          number: 'S05',
           name: 'Seats',
           operator: 'honey singh' , 
           assigned: false, 
         },
-        {
-          number: 6,
-          name: 'Frozen Yogurt',
-          operator: 'honey singh' , 
-          assigned: false, 
-        },
-        {
-          number: 7,
-          name: 'Frozen Yogurt',
-          operator: 'honey singh' , 
-          assigned: false, 
-        },
-        {
-          number: 8,
-          name: 'Frozen Yogurt',
-          operator: 'honey singh' ,
-          assigned: false,  
-        },
-        {
-          number: 9,
-          name: 'Frozen Yogurt',
-          operator: 'honey singh' , 
-          assigned: false, 
-        },
-        {
-          number: 10,
-          name: 'Frozen Yogurt',
-          operator: 'honey singh' , 
-          assigned: false, 
-        },
+        // {
+        //   number: 6,
+        //   name: 'Frozen Yogurt',
+        //   operator: 'honey singh' , 
+        //   assigned: false, 
+        // },
+        // {
+        //   number: 7,
+        //   name: 'Frozen Yogurt',
+        //   operator: 'honey singh' , 
+        //   assigned: false, 
+        // },
+        // {
+        //   number: 8,
+        //   name: 'Frozen Yogurt',
+        //   operator: 'honey singh' ,
+        //   assigned: false,  
+        // },
+        // {
+        //   number: 9,
+        //   name: 'Frozen Yogurt',
+        //   operator: 'honey singh' , 
+        //   assigned: false, 
+        // },
+        // {
+        //   number: 10,
+        //   name: 'Frozen Yogurt',
+        //   operator: 'honey singh' , 
+        //   assigned: false, 
+        // },
       ],  
       operators: [
-        {
-          name: 'Kaloraat',
-          skills: 'I assume u know',
-          // assign: false,
-        },
-        {
-          name: 'Ryan',
-          skills: 'I assume u know',
-          // assign: false,
-        },
-        {
-          name: 'Disha',
-          skills: 'I assume u know',
-          // assign: false,
-        },
-        {
-          name: 'Suchismita',
-          skills: 'I assume u know',
-          // assign: false,
-        },
-        {
-          name: 'Abhirup',
-          skills: 'I assume u know',
-          // assign: false,
-        },
+        // {
+        //   name: 'Kaloraat',
+        //   skills: 'I assume u know',
+        //   // assign: false,
+        // },
+        // {
+        //   name: 'Ryan',
+        //   skills: 'I assume u know',
+        //   // assign: false,
+        // },
+        // {
+        //   name: 'Disha',
+        //   skills: 'I assume u know',
+        //   // assign: false,
+        // },
+        // {
+        //   name: 'Suchismita',
+        //   skills: 'I assume u know',
+        //   // assign: false,
+        // },
+        // {
+        //   name: 'Abhirup',
+        //   skills: 'I assume u know',
+        //   // assign: false,
+        // },
       ]
-
     }),
 
     methods: {
-      assign(number) {
-        this.operators_hidden = false
-        this.station_no = number
-        // console.log(number)
+      async assign(number) {
+        try{
+          this.operators_hidden = false
+          this.station_no = number
+
+          let response = await this.$axios.$get(`incharge/workdesk/${number}`);
+          this.operators = response.data
+          console.log(this.operators);
+        }
+        catch(error){
+          console.log(error)
+        }
       },
+
       done() {
         this.operators_hidden = true
         // console.log(this.selected[0].name ) 
