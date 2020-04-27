@@ -39,7 +39,8 @@ export default {
     plugins: [
         '@/plugins/particles',
         '@plugins/axios.js',
-        '@plugins/mixins/validation.js'
+        '@plugins/mixins/validation.js',
+        '@plugins/mixins/user.js',
     ],
 
     /*
@@ -53,6 +54,10 @@ export default {
         '@nuxtjs/auth'
         
     ],
+
+    // schemes : [
+    //     "http"
+    // ],
 
     vuetify: {
         customVariables: ['~/assets/variables.scss'],

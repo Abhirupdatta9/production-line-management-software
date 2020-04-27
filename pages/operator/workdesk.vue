@@ -93,6 +93,7 @@
 
 <script>
 export default {
+
     layout:'operator',
     data(){
         return{
@@ -139,6 +140,7 @@ export default {
 
         }
     },
+
     methods : {
       generateId() {
         var min=1; 
@@ -167,12 +169,10 @@ export default {
         
       },
 
-
       async updateScanDetails() {
         await this.$axios.$post('scan-details', this.scanData);
         this.start();
-      }
-
+      },
     }
 }
 </script>
