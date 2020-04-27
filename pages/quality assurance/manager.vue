@@ -31,7 +31,7 @@
                                 {{item.operator}}
                                 </template>
                             </template>
-                            <template  v-slot:item.name="{ item }">
+                            <template  v-slot:item.name="{ }">
                                 <v-text-field
                                 label="Comments"
                                 outlined
@@ -69,7 +69,7 @@
                                 {{item.operator}}
                                 </template>
                             </template>
-                            <template  v-slot:item.name="{ item }">
+                            <template  v-slot:item.name="{ }">
                                 <v-text-field
                                 label="Comments"
                                 outlined
