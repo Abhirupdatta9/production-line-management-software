@@ -32,9 +32,9 @@
               <template  v-slot:item.operator="{ item }">
                 <v-btn v-if="item.assigned != true" small outlined @click="assign(item.number)">Assign</v-btn>
                 <template v-else>
-                  <!-- <template v-if=""> -->
+                  
                   {{item.operator}}
-                  <!-- </template> -->
+                 
                 </template>
               </template>
             </v-data-table>

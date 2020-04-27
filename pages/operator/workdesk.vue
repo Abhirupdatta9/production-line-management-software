@@ -94,7 +94,7 @@
 <script>
 export default {
     layout:'operator',
-    data(){
+    data() {
         return{
           lineNumber:'',
           stationNumber:'',
