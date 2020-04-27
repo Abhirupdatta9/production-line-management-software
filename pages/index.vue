@@ -49,20 +49,22 @@ export default {
         name:''
     }
     }),
-    methods:{
-    async submit(){
-      try{
-          await this.$auth.loginWith('local',{data: this.form})
 
-          if(this.form.name === 'Operator')
-            this.$router.push("/operator/workdesk");
-          else if(this.form.name === 'Incharge')
-            this.$router.push("/incharge/workdesk");
-          else  
-            this.$router.push("/manager/dashboard");
-      }catch(e){console.log(e);}
-    }
-  }
+    methods:{
+        async submit(){
+          try{
+              await this.$auth.loginWith('local',{data: this.form})
+              if(this.form.name === 'Operator')
+                this.$router.push("/operator/workdesk");
+              else if(this.form.name === 'Incharge')
+                this.$router.push("/incharge/workdesk");
+              else  
+                this.$router.push("/manager/dashboard");
+          }catch(e){console.log(e);}
+        }
+    },
+
+    
 }
 </script>
 

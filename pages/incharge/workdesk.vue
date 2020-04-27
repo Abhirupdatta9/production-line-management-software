@@ -200,39 +200,46 @@ export default {
 
           let response = await this.$axios.$get(`incharge/workdesk/${number}`);
           this.operators = response.data
-          console.log(this.operators);
+          // console.log(this.selected);
         }
         catch(error){
           console.log(error)
         }
       },
 
-      done() {
-        this.operators_hidden = true
-        // console.log(this.selected[0].name ) 
-        var sno = this.station_no
+      async done() {
+        try{
+          this.operators_hidden = true
+          var sno = this.station_no
 
-        this.stations.filter( function(station) {
-          return station.number == sno
-        })[0].operator = this.selected[0].email
+          this.stations.filter( function(station) {
+            return station.number == sno
+          })[0].operator = this.selected[0].email
 
-        this.stations.filter( function(station) {
-          return station.number == sno
-        })[0].assigned = true
-        
-        var operator = this.stations.filter( function(station) {
-          return station.number == sno
-        })
-        
-        console.log(operator)
-        
+          this.stations.filter( function(station) {
+            return station.number == sno
+          })[0].assigned = true
+          
+          var operator = this.stations.filter( function(station) {
+            return station.number == sno
+          })
+          var selected_id = this.selected[0].email
+          await this.$axios.$post(`assign-station/${this.station_no}/${selected_id}`);
+
+        }
+        catch(error){
+           console.log(error)
+          // console.log(this.selected[0].email) 
+        }         
       },
+
       setOperator(operator) {
         console.log(operator)
         
       }
 
-    }
+    },
+
 }
 </script>
 
