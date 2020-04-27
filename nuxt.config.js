@@ -101,6 +101,9 @@ export default {
         }
     },
 
+    router : {
+        middleware : ["clearValidationErrors"]
+    },
     /*
      ** Build configuration
      */
