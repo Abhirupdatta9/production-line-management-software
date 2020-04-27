@@ -50,7 +50,7 @@
 </template>
 <script>
 export default {
-    layout: 'manager',
+    layout: 'incharge',
     data() {
         return {
             items: ["S01","S02","S03"],

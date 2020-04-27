@@ -5,6 +5,7 @@
       color="#5e35b1"
       dark
       fixed
+      flat
       >
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
@@ -71,6 +72,7 @@
       items: [
         { text: 'Dashboard', icon: 'mdi-apps', to:'dashboard' },
         { text: 'View Reports', icon: 'mdi-chart-bar', to:'view-reports' },
+        { text: 'Line Status', icon: 'mdi-chart-bar', to:'line-status' },
         { text: 'Workdesk', icon: 'mdi-chart-bubble', to:'workdesk' },
         { text: 'Settings', icon: 'mdi-settings' , to:'settings'},
         { text: 'Help', icon: 'mdi-help' , to:'help'},

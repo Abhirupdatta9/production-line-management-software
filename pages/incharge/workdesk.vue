@@ -202,7 +202,7 @@ export default {
           this.operators = response.data
           // console.log(this.selected);
         }
-        catch(error){
+        catch(error) {
           console.log(error)
         }
       },
