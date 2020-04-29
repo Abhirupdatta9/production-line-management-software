@@ -57,20 +57,20 @@ export default {
     data() {
         return {
             lines: ["L01","L02","L03"],
-            ststions: ["S01","S02","S03"],
+            stations: ["S01","S02","S03"],
             station: "",
             headers: [
                 {
-                    text: 'Subassembly ID',
+                    text: 'Station ID',
                     align: 'start',
                     sortable: false,
-                    value: 'Sub_Assembly_ID',
+                    value: 'Station_ID',
                 },
                 { text: 'T1', value: 'T1' },
                 { text: 'Part ID', value: 'Part_ID' },
                 { text: 'T2', value: 'T2' },
-                { text: 'Rejected', value: 'Reject' },
-                { text: 'Cycle Time', value: 'Cycle_Time' },
+                { text: 'Rejections', value: 'Reject' },
+                // { text: 'Cycle Time', value: 'Cycle_Time' },
             ],
             
             scan : [],
