@@ -19,8 +19,8 @@
         <v-btn icon>
           <v-icon>mdi-account</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
+        <v-btn text @click="logout()">
+          Logout
         </v-btn>
       </v-app-bar>
 
@@ -67,7 +67,11 @@ export default {
         { text: 'Help', icon: 'mdi-help', to: 'help' },
       ],
     }),
-
+    methods:{
+        logout(){
+            this.$auth.logout()
+        }
+}
 }
 </script>
 

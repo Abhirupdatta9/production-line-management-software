@@ -48,8 +48,8 @@
           <v-icon>mdi-account</v-icon>
         </v-btn>
 
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
+        <v-btn text @click="logout()">
+          Logout
         </v-btn>
       </v-app-bar>
 
@@ -95,6 +95,11 @@
 <script>
   export default {
       name: 'manager',
+      methods:{
+        logout(){
+            this.$auth.logout()
+        }
+      },
     data: () => ({
       drawer: false,
       group: null,
@@ -148,8 +153,8 @@
     watch: {
       group () {
         this.drawer = false
-      },
-    },
+      }
+    }
   }
 </script>
 

@@ -19,8 +19,8 @@
         <v-btn icon>
           <v-icon>mdi-account</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
+        <v-btn text @click="logout()">
+          Logout
         </v-btn>
       </v-app-bar>
 
@@ -88,6 +88,11 @@
       group () {
         this.drawer = false
       },
+    },
+      methods:{
+        logout(){
+            this.$auth.logout()
+        }
     },
   }
 </script>
