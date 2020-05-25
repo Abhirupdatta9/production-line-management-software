@@ -62,44 +62,19 @@ export default {
             parts : [],
             items: [ "Clear", "Hold"],
             headers: [
-                { text: 'Subassembly ID', align: 'start', sortable: false, value: "qnumber" },
+                { text: 'Subassembly ID', align: 'start', sortable: false, value: "sid" },
                 { text: 'Status', value: "status", width: 180 },
                 { text: 'Comments',value: "comments", width: 700 },
             ],
-            quality: [
-                // {
-                // qnumber: '',
-                // status: '',
-                // comments: '' ,
-                // },
-                // {
-                // qnumber: '',
-                // status: '',
-                // comments: '' ,
-                // },
-                // {
-                // qnumber: '',
-                // status: '',
-                // comments: '' ,
-                // },
-                // {
-                // qnumber: '',
-                // status: '',
-                // comments: '' ,
-                // },
-                // {
-                // qnumber: '',
-                // status: '',
-                // comments: '' ,
-                // },  
-            ],
+            quality: [],
 
         }
     },
 
     methods : {
         update() {
-            console.log(this.quality)
+            this.quality.forEach((item) => {this.$axios.$post('quality', item)})
+            
         }
     },
 
@@ -112,7 +87,7 @@ export default {
                 this.parts.forEach(part => {
                     this.quality.push(
                         {
-                        qnumber: '1',
+                        sid: '',
                         status: '',
                         comments: '' ,
                         }
@@ -120,7 +95,7 @@ export default {
                 });
             
                 let count = 0 
-                this.quality.forEach((i)=>{i.qnumber = this.parts[count].uniqueParts;  count++;})
+                this.quality.forEach((i)=>{i.sid = this.parts[count].uniqueParts;  count++;})
                 console.log(this.quality)
                
         })
