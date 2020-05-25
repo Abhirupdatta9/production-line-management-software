@@ -101,6 +101,7 @@ export default {
           stationNumber:'',
           cycletime: '',
           scanVariable: '',
+          email:'',
           
           part: [
             {
@@ -173,6 +174,15 @@ export default {
         await this.$axios.$post('scan-details', this.scanData);
         this.start();
       },
+    },
+
+    mounted: function (){
+      this.$nextTick(async function () {
+        let response = await this.$axios.$get(`/operator/workdesk/${this.email}`);
+        // this.lineNumber = response.data
+        // this.stationNumber = response.data
+        console.log(response.Line_ID)
+      })
     }
 }
 </script>
