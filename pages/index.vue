@@ -18,7 +18,7 @@
                       <v-text-field solo rounded prepend-icon="mdi-lock" label="Enter Password" :type="'password'" required style="margin-bottom:-20px" v-model="form.password"></v-text-field>
                       <small style="color:red" v-if="errors.password">{{errors.password[0]}}</small>
                       <v-select :items="items" prepend-icon="mdi-ticket-account" solo rounded label="User Type" required v-model="form.name"></v-select>
-                      <small style="color:red" v-if="errors.name">{{errors.name[0]}}</small>
+                      <small style="color:red" v-if="errors.name">The type field is required.</small>
                       <v-row>
                   <v-col cols="11" offset="1" float>
                     <v-btn type="submit" block large rounded dark color="#5e35b1" style="margin-bottom=-5px;">Login</v-btn>
@@ -42,7 +42,7 @@
 <script>
 export default {
     data: () => ({
-      items: ['Operator', 'Incharge', 'Manager'],
+      items: ['Operator', 'Incharge', 'Manager','Quality','Dispatch'],
       form:{
         email:'',
         password:'',
@@ -58,8 +58,12 @@ export default {
                 this.$router.push("/operator/workdesk");
               else if(this.form.name === 'Incharge')
                 this.$router.push("/incharge/workdesk");
-              else  
+              else if(this.form.name === 'Manager')
                 this.$router.push("/manager/dashboard");
+              else if(this.form.name === 'Quality')
+                this.$router.push("/quality assurance/manager");
+              else if(this.form.name === 'Dispatch')
+                this.$router.push("/dispatch/manager");
           }catch(e){console.log(e);}
         }
     },

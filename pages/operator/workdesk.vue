@@ -25,7 +25,7 @@
       </v-row>
       <v-row>
         <v-col >
-          <v-btn block outlined @click="buzzer()">Report error</v-btn>
+          <v-btn block outlined @click="buzzer(user.email)">Report error</v-btn>
         </v-col>
         <v-col >
           <v-btn block outlined @click="start()">Start scanning</v-btn>
@@ -88,8 +88,6 @@
               </v-card>
             </v-col>
             
-            
-
           </v-row>
         </v-container>
       </v-card>
@@ -121,6 +119,7 @@ export default {
           model_number:'',
           Station_ID:'',
           Line_ID:'',
+          Op_ID:'',
           
           part: [
             {
@@ -129,8 +128,8 @@ export default {
               timestamp: '',
             },
             {
-              label: "Incoming part name",
-              value: 'Engine',
+              label: "Incoming part type",
+              value: '',
               timestamp: '',
             },
           ],
@@ -158,8 +157,8 @@ export default {
             Reject : "0"
           },
           buzzerDetails: {
-            Line_ID: this.Line_ID,
-            Station_ID:this.Station_ID,
+            Line_ID: '',
+            Station_ID: '',
             Operator_ID:'',
           }
 
@@ -168,14 +167,29 @@ export default {
 
     methods : {
 
-      async buzzer(){
+      async part(){
+        try{
+          let response = await this.$axios.$get(`operator/${this.Station_ID}`);
+          this.part.subAssembly[1].value = response.data
+        }
+        catch(error){
+          console.log(error)
+        }
+      },
+
+      async buzzer(email){
+        console.log(this.buzzerDetails);
+        this.buzzerDetails.Operator_ID = email
         await this.$axios.$post('buzzer',this.buzzerDetails)
         this.alert=true;
         this.stop();
+        
       },
+
       stationId_to_Number(){
         this.stationNumber=this.Station_ID.substring(1,3);
       },
+
       generateId_subAssembly() {
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -191,6 +205,7 @@ export default {
         this.subAssembly[1].value = 'Nano';
         this.generateId_part();
       },
+
         generateId_part() {
         var min=100; 
         var max=999;  
@@ -200,6 +215,7 @@ export default {
         this.scanData.Part_ID = "P"+this.stationNumber+"M"+this.model_number+random_part_id;
         this.stop();
       },
+
       reject_part(){
         this.scanData.Reject=1;
         this.updateScanDetails();
@@ -230,13 +246,21 @@ export default {
         await this.$axios.$post('scan-details', this.scanData);
         this.start();
       },
+
+    
     },
 
     async mounted(){
         let response = await this.$axios.$get(`/operator/workdesk/${this.user.email}`);
         this.Line_ID = response.data[0].Line_ID
         this.Station_ID = response.data[0].Station_ID
-        console.log(this.lineNumber)
+
+        this.buzzerDetails.Line_ID = response.data[0].Line_ID
+        this.buzzerDetails.Station_ID = response.data[0].Station_ID
+
+        let res = await this.$axios.$get(`operator/${this.Station_ID}`);
+        this.part[1].value = res.data[0].part
+        console.log(res.data[0].part)
       }
 }
 </script>
