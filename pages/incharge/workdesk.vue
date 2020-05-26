@@ -104,92 +104,36 @@ export default {
       stations: [
         {
           number: 'S01',
-          name: 'Wheels',
-          operator: 'honey singh' ,
+          name: 'Engine',
+          operator: '' ,
           assigned: false, 
         },
         {
           number: 'S02',
-          name: 'Doors',
-          operator: 'honey singh' , 
+          name: 'Seats',
+          operator: '' , 
           assigned: false, 
         },
         {
           number: 'S03',
-          name: 'Engine',
-          operator: 'honey singh' , 
+          name: 'Wheels',
+          operator: '' , 
           assigned: false, 
         },
         {
           number: 'S04',
           name: 'Dashboard',
-          operator: 'honey singh' , 
+          operator: '' , 
           assigned: false, 
         },
         {
           number: 'S05',
-          name: 'Seats',
-          operator: 'honey singh' , 
+          name: 'Steering Wheel',
+          operator: '' , 
           assigned: false, 
         },
-        // {
-        //   number: 6,
-        //   name: 'Frozen Yogurt',
-        //   operator: 'honey singh' , 
-        //   assigned: false, 
-        // },
-        // {
-        //   number: 7,
-        //   name: 'Frozen Yogurt',
-        //   operator: 'honey singh' , 
-        //   assigned: false, 
-        // },
-        // {
-        //   number: 8,
-        //   name: 'Frozen Yogurt',
-        //   operator: 'honey singh' ,
-        //   assigned: false,  
-        // },
-        // {
-        //   number: 9,
-        //   name: 'Frozen Yogurt',
-        //   operator: 'honey singh' , 
-        //   assigned: false, 
-        // },
-        // {
-        //   number: 10,
-        //   name: 'Frozen Yogurt',
-        //   operator: 'honey singh' , 
-        //   assigned: false, 
-        // },
       ],  
-      operators: [
-        // {
-        //   name: 'Kaloraat',
-        //   skills: 'I assume u know',
-        //   // assign: false,
-        // },
-        // {
-        //   name: 'Ryan',
-        //   skills: 'I assume u know',
-        //   // assign: false,
-        // },
-        // {
-        //   name: 'Disha',
-        //   skills: 'I assume u know',
-        //   // assign: false,
-        // },
-        // {
-        //   name: 'Suchismita',
-        //   skills: 'I assume u know',
-        //   // assign: false,
-        // },
-        // {
-        //   name: 'Abhirup',
-        //   skills: 'I assume u know',
-        //   // assign: false,
-        // },
-      ]
+      operators: []
     }),
 
     methods: {

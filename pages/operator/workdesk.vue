@@ -3,12 +3,6 @@
     <v-col cols="8" offset="2">
       <br><br><br><br><br>
       <v-row>
-        <v-col>
-          <v-btn block outlined @click="stno(user.email)">Get details</v-btn>
-        </v-col>
-      </v-row>
-      <v-row>
-
         <v-col >
           <v-text-field
             :value="this.Line_ID"
@@ -100,16 +94,16 @@
         </v-container>
       </v-card>
       <v-row>
-                  <v-col>
-                    <v-btn block outlined @click="updateScanDetails()">Accept</v-btn>
-                  </v-col>
-                  <v-col>
-                    <v-btn block outlined @click="reject_part()">Reject</v-btn>
-                  </v-col>
-                </v-row>
-      
+        <v-col>
+          <v-btn block outlined @click="updateScanDetails()">Accept</v-btn>
+        </v-col>
+        <v-col>
+          <v-btn block outlined @click="reject_part()">Reject</v-btn>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
+  
 </template>
 
 <script>
@@ -122,13 +116,12 @@ export default {
           stationNumber:'',
           cycletime: '',
           scanVariable: '',
+          details:{},
           alert: false,
           model_number:'',
-          Station_ID:"S01",
-          Line_ID:"L01",
-          details:{
-            
-          },
+          Station_ID:'',
+          Line_ID:'',
+          
           part: [
             {
               label: "Incoming part id",
@@ -161,31 +154,19 @@ export default {
             Station_ID : "S01",
             T1 : "",
             T2 : "",
-            Cycle_Time: "12:10:56.333",
+            Cycle_Time: "",
             Reject : "0"
           },
           buzzerDetails: {
-            Line_ID: "L01",
-            Station_ID:"S01",
-            Operator_ID:"op0101@xyz.com",
+            Line_ID: this.Line_ID,
+            Station_ID:this.Station_ID,
+            Operator_ID:'',
           }
 
         }
     },
 
     methods : {
-      async stno(operator_id) {
-        try{
-          let response = await this.$axios.$get(`operator/workdesk/${operator_id}`);
-          this.details = response.data
-          console.log(this.details);
-
-          // console.log(response)
-        }
-        catch(error){
-          console.log(error)
-        }
-      },
 
       async buzzer(){
         await this.$axios.$post('buzzer',this.buzzerDetails)
@@ -203,7 +184,7 @@ export default {
         this.scanData.T1=dateTime;
         this.model_number=Math.ceil(Math.random() * 2);
         var min=100; 
-        var max=150;  
+        var max=110;  
         var random_sub_id = Math.floor(Math.random() * (+max - +min)) + +min; 
         this.subAssembly[0].value = "P00M"+this.model_number+random_sub_id;
         this.scanData.Sub_Assembly_ID = "P00M" +this.model_number+ random_sub_id;
@@ -250,15 +231,12 @@ export default {
       },
     },
 
-    mounted: function (){
-      this.$nextTick(async function () {
-        let response = await this.$axios.$get(`/operator/workdesk/${this.email}`);
-        // this.lineNumber = response.data
-        // this.stationNumber = response.data
-        console.log(response.Line_ID)
-      })
-    }
-
+    async mounted(){
+        let response = await this.$axios.$get(`/operator/workdesk/${this.user.email}`);
+        this.Line_ID = response.data[0].Line_ID
+        this.Station_ID = response.data[0].Station_ID
+        console.log(this.lineNumber)
+      }
 }
 </script>
 
