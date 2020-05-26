@@ -3,7 +3,7 @@
         <br><br><br><br>
         <v-row>
             <v-col cols="8" offset="2">
-                <v-card outlined class="px-3 py-3">
+                <v-card outlined class="px-2 py-3">
                     <v-row>
                         <v-col>
                             <v-data-table
@@ -19,9 +19,10 @@
                                     </v-toolbar>
                                 </template>
 
-                                <template  v-slot:item.operator="{}">
+                                <template  v-slot:item.status="{item}">
                                     <v-select       
                                     :items="items"
+                                    v-model="item.status"
                                     label="Select status"
                                     outlined
                                     dense
@@ -29,9 +30,10 @@
                                     ></v-select>
                                 </template>
                                 
-                                <template  v-slot:item.name="{}">
+                                <template  v-slot:item.comments="{item}">
                                     <v-text-field
                                     label="Comments"
+                                    v-model="item.comments"
                                     outlined
                                     dense
                                     class="mt-2 mb-n5"
@@ -60,49 +62,19 @@ export default {
             parts : [],
             items: [ "Clear", "Hold"],
             headers: [
-                { text: 'Subassembly ID', align: 'start', sortable: false, value: "number" },
-                { text: 'Status', value: "operator", width: 180 },
-                { text: 'Comments',value: "name", width: 700 },
+                { text: 'Subassembly ID', align: 'start', sortable: false, value: "sid" },
+                { text: 'Status', value: "status", width: 180 },
+                { text: 'Comments',value: "comments", width: 700 },
             ],
-            quality: [
-                {
-                qnumber: '',
-                name: 'Wheels',
-                operator: 'honey singh' ,
-                assigned: false,
-                },
-                {
-                qnumber: '',
-                name: 'Doors',
-                operator: 'honey singh' , 
-                assigned: false, 
-                },
-                {
-                qnumber: '',
-                name: 'Engine',
-                operator: 'honey singh' , 
-                assigned: false, 
-                },
-                {
-                qnumber: '',
-                name: 'Dashboard',
-                operator: 'honey singh' , 
-                assigned: false, 
-                },
-                {
-                qnumber: '',
-                name: 'Seats',
-                operator: 'honey singh' , 
-                assigned: false, 
-                },
-            ],
+            quality: [],
 
         }
     },
 
     methods : {
         update() {
-
+            this.quality.forEach((item) => {this.$axios.$post('quality', item)})
+            
         }
     },
 
@@ -112,13 +84,20 @@ export default {
                 this.parts = response.data
                 console.log(this.parts)
 
-                this.quality.forEach((i)=>{i.qnumber=this.parts.forEach( function (id) {return id.uniqueParts})})
-
+                this.parts.forEach(part => {
+                    this.quality.push(
+                        {
+                        sid: '',
+                        status: '',
+                        comments: '' ,
+                        }
+                    )
+                });
+            
+                let count = 0 
+                this.quality.forEach((i)=>{i.sid = this.parts[count].uniqueParts;  count++;})
                 console.log(this.quality)
-
-                // console.log(this.parts.forEach((id)=>{return id.uniqueParts}))
-
-                // this.parts.forEach(function (e) {console.log(e.uniqueParts);})
+               
         })
     }
 }

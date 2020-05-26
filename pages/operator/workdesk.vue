@@ -226,6 +226,7 @@ export default {
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         var dateTime = date+' '+time;
         this.scanData.T2=dateTime;
+        this.scanData.cycletime=this.scanData.T2-this.scanData.T1;
         await this.$axios.$post('scan-details', this.scanData);
         this.start();
       },
