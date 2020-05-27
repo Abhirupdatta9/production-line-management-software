@@ -110,7 +110,7 @@
 <script>
 
 export default {
-layout:'manager',
+layout:'incharge',
 data: () => ({
   productivity_model1:{ //line graph
 
@@ -124,7 +124,7 @@ data: () => ({
   part_quality:{ //bar graph
 
   }, 
-  Line_id:"L01",
+  Line_id:"",
   sct_model1:{},
   sct_model2:{},
 }),
@@ -164,7 +164,12 @@ methods:{
     
     
   }
-}
+},
+
+  async mounted(){
+    let response = await this.$axios.$get(`/incharge/reports/${this.user.email}`);
+    this.Line_id = response[0].Line_ID
+  }
 }
 </script>
 

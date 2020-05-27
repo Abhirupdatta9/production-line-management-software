@@ -9,10 +9,10 @@
                         v-model="selected"
                         :headers="headers"
                         :items="clearedAssemblies"
-                        item-key="number"
+                        item-key="sid"
                         class="elevation-1"
-                        show-select
                         single-select
+                        show-select
                         >
                             <template v-slot:top>
                                 <v-col cols="4" offset="4">
@@ -21,21 +21,10 @@
                                     </v-toolbar>
                                 </v-col>
                             </template>
-
-                            <template  v-slot:item.comment="{ }">
-                                <v-text-field
-                                    label="Comments"
-                                    outlined
-                                    dense
-                                    class="mt-2 mb-n5"
-                                >
-                                </v-text-field>
-                            </template>
-
                         </v-data-table>
                     </v-col>
 
-                    <v-col cols="2" offset="5"><v-btn :onClick=dispatch()>Dispatch</v-btn></v-col>
+                    <v-col cols="2" offset="5"><v-btn @click="dispatch_delete()">Dispatch</v-btn></v-col>
                 </v-card>
             </v-col>
         </v-row>
@@ -46,55 +35,47 @@ export default {
     layout: 'dispatch',
     data() {
         return{
-            dispatched : "false",
             selected : [],
-            item: "Clear",
+            parts : [],
             headers: [
-                { text: 'Subassembly ID',align: 'start',sortable: false,value: 'number'},
-                { text: 'Status', value: 'clear', width: 180 },
-                { text: 'Comments', value: 'comment',width: 180 },
-                { text: 'Dispatch Status', value: 'dispatchable',width: 180 },
+                { text: 'Subassembly ID',align: 'start',sortable: false,value: 'sid'},
+                { text: 'Status', value: 'status', width: 180 },
             ],
-            clearedAssemblies: [
-                {
-                number: 'P00M1098',
-                comment: '',
-                clear: 'clear' ,
-                dispatchable: "",
-                },
-                {
-                number: 'P00M1873',
-                comment: '',
-                clear: 'clear' ,
-                dispatchable: "",
-                },
-                {
-                number: 'P00M1028',
-                comment: '',
-                clear: 'clear' ,
-                dispatchable: "",
-                },
-                {
-                number: 'P00M1673',
-                comment: '',
-                clear: 'clear' ,
-                dispatchable: "",
-                },
-                {
-                number: 'P00M1068',
-                comment: '',
-                clear: 'clear' ,
-                dispatchable: "",
-                },
-            ],
-
+            clearedAssemblies: [],
         }
     },
 
     methods : {
-        dispatch(){
-            console.log(this.selected)
-        }
+        dispatch_delete(){
+            this.selected.forEach((item) => {this.$axios.$delete(`dispatch/${item.sid}`)})
+            for(var i = 0; i <this.selected.length; i++){
+                    const index = this.clearedAssemblies.indexOf(this.selected[i]);
+                    this.clearedAssemblies.splice(index, 1);
+            } 
+        },
+    },
+
+    mounted: function () {
+        this.$nextTick(async function () {
+                let response = await this.$axios.$get('dispatch');
+                this.parts = response.data
+                this.parts.forEach(part => {
+                    this.clearedAssemblies.push(
+                        {
+                        sid: '',
+                        status: '',
+                        }
+                    )
+                });
+            
+                let count = 0 
+                this.clearedAssemblies.forEach((i)=>{i.sid = this.parts[count].uniqueParts;  count++;})
+
+                count = 0 
+                this.clearedAssemblies.forEach((i)=>{i.status = "clear";  count++;})
+
+                console.log(this.clearedAssemblies)
+        })
     }
 }
 </script>

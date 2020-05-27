@@ -70,11 +70,11 @@
       group: null,
       item: 1,
       items: [
-        { text: 'Dashboard', icon: 'mdi-apps', to:'dashboard' },
-        { text: 'View Reports', icon: 'mdi-chart-bar', to:'view-reports' },
-        { text: 'Line Status', icon: 'mdi-chart-bar', to:'line-status' },
         { text: 'Workdesk', icon: 'mdi-chart-bubble', to:'workdesk' },
-        { text: 'Settings', icon: 'mdi-settings' , to:'settings'},
+        { text: 'Line Status', icon: 'mdi-progress-clock', to:'line-status' },
+        { text: 'View Reports', icon: 'mdi-chart-areaspline-variant', to:'view-reports' },
+        { text: 'Track Assemblies', icon: 'mdi-account-edit', to:'tracking' },
+        { text: 'Error Details', icon: 'mdi-alert-circle', to:'error' },
         { text: 'Help', icon: 'mdi-help' , to:'help'},
         
       ],

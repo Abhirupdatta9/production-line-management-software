@@ -35,7 +35,7 @@
           <v-list-item
             v-for="(notification, i) in notifications"
             :key="i"
-            @click=""
+            
             absolute
             offset-y
           >
@@ -59,7 +59,7 @@
         bottom
         temporary
       >
-          <v-list-item two-line>
+          <!-- <v-list-item two-line>
             <v-list-item-avatar>
               <img src="https://randomuser.me/api/portraits/women/81.jpg">
             </v-list-item-avatar>
@@ -68,7 +68,7 @@
               <v-list-item-title>Jane Smith</v-list-item-title>
               <v-list-item-subtitle>Logged In</v-list-item-subtitle>
             </v-list-item-content>
-          </v-list-item>
+          </v-list-item> -->
         
 
         <v-list
@@ -113,34 +113,15 @@
  
       items: [
           {
-              title: 'Dashboard',
-              icon: 'mdi-apps',
-              to:'/manager/dashboard'
-          },
-          {
-              title: 'Tasks',
-              icon: 'mdi-playlist-edit',
-              to:'/manager/tasks'
-          },
-          {
-              title: 'Request List',
-              icon: 'mdi-format-list-bulleted',
-              to:'/manager/request-list'
-          },
-          {
               title: 'View Report',
-              icon: 'mdi-chart-bar',
+              icon: 'mdi-chart-areaspline-variant',
               to:'/manager/view-report'
           },
+          { title: 'Track Assemblies', icon: 'mdi-account-edit', to:'tracking' },
           {
               title: 'Line Status',
               icon: 'mdi-progress-clock',
               to:'/manager/line-status'
-          },
-          {
-              title: 'Settings',
-              icon: 'mdi-settings',
-              to:'/manager/settings'
           },
           {
               title: 'Help',
