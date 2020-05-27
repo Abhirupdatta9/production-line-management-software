@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <v-container fluid>
+    <!-- <v-container fluid>
       <v-row dense>
         <v-col
           v-for="card in cards"
@@ -27,7 +27,13 @@
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
+
+    <template>
+      <div>
+        <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
+      </div>
+    </template>
 
 </div>
 </template>
@@ -36,12 +42,25 @@
 export default {
     layout:'incharge',
     data: () => ({
-      cards: [
-        { title: 'Productivity Report', src: '/productivity.jpg', flex: 6 },
-        { title: 'Part Quality Report', src: '/part.jpg', flex: 6 },
-        { title: 'Line Quality Report', src: '/line.jpg', flex: 6 },
-      ],
+      // cards: [
+      //   { title: 'Productivity Report', src: '/productivity.jpg', flex: 6 },
+      //   { title: 'Part Quality Report', src: '/part.jpg', flex: 6 },
+      //   { title: 'Line Quality Report', src: '/line.jpg', flex: 6 },
+      // ],
+      chartOptions: {
+          chart: {
+            id: 'vuechart-example',
+          },
+          xaxis: {
+            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          },
+        },
+        series: [{
+          name: 'series-1',
+          data: [30, 40, 45, 50, 49, 60, 70, 81]
+        }]
     }),
+    
 }
 </script>
 

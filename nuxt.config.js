@@ -38,6 +38,7 @@ export default {
      */
     plugins: [
         '@/plugins/particles',
+        '@/plugins/apex-charts',
         '@plugins/axios.js',
         '@plugins/mixins/validation.js',
         '@plugins/mixins/user.js',
