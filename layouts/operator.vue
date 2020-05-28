@@ -60,10 +60,7 @@ export default {
       drawer: false,
       group: null,
       items: [
-        { text: 'Dashboard', icon: 'mdi-apps', to: 'dashboard'},
-        { text: 'Task', icon: 'mdi-playlist-edit', to: 'task'},
         { text: 'Workdesk', icon: 'mdi-chart-bubble', to: 'workdesk' },
-        { text: 'Settings', icon: 'mdi-settings', to: 'settings' },
         { text: 'Help', icon: 'mdi-help', to: 'help' },
       ],
     }),

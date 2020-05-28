@@ -97,7 +97,8 @@ export default {
                 let count = 0 
                 this.quality.forEach((i)=>{i.sid = this.parts[count].uniqueParts;  count++;})
                 console.log(this.quality)
-               
+
+                let res = await this.$axios.$delete('quality/delete');
         })
     }
 }
