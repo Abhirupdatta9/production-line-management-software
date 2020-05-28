@@ -3,10 +3,14 @@
   <v-img src="/bg2.jpg" height="100vh" width="100vw">
     <v-container fluid>
       <v-row>
-        <v-col cols="7"></v-col>
+        <v-col cols="4" offset="3">
+          <br><br><br><br><br><br><br><br>
+          <v-img src="/logo-01.png" height="300px" width="300px"></v-img>
+          <!-- <v-btn dark color=#5e35b1 style="margin:10px;margin-left:55px">Assembly Line System</v-btn> -->
+        </v-col>
         <v-col cols="4">
-            <div style="background-color:rgba(255,255,255,0.5);">
-              <v-card width="400px" height="520px" style="margin-top:80px; margin-left:90px; padding-bottom:30px" class="justify-right">
+            <div>
+              <v-card width="400px" height="520px" style="margin-top:80px; margin-left:90px; padding-bottom:30px" elevation="5" class="justify-right">
                 <!-- <v-app-bar color="#5e35b1"> -->
                   <v-card-text class="justify-center  display-1 font-weight-black " style="text-align:center; size=20px">USER LOGIN</v-card-text>
                 <!-- </v-app-bar> -->
