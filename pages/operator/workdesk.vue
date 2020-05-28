@@ -1,4 +1,5 @@
 <template>
+<v-img src="/bgall.jpg">
   <v-row>
     <v-col cols="8" offset="2">
       <br><br><br><br><br>
@@ -101,6 +102,7 @@
       </v-row>
     </v-col>
   </v-row>
+</v-img>
   
 </template>
 
@@ -160,7 +162,9 @@ export default {
             Line_ID: '',
             Station_ID: '',
             Operator_ID:'',
-          }
+          },
+          t1:"",
+          t2:"",
 
         }
     },
@@ -193,8 +197,8 @@ export default {
       generateId_subAssembly() {
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date+' '+time;
+        this.t1 = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+this.t1;
         this.scanData.T1=dateTime;
         this.model_number=Math.ceil(Math.random() * 2);
         var min=100; 
@@ -202,7 +206,11 @@ export default {
         var random_sub_id = Math.floor(Math.random() * (+max - +min)) + +min; 
         this.subAssembly[0].value = "P00M"+this.model_number+random_sub_id;
         this.scanData.Sub_Assembly_ID = "P00M" +this.model_number+ random_sub_id;
-        this.subAssembly[1].value = 'Nano';
+         if (this.model_number===1) {
+          this.subAssembly[1].value = 'Model 1';
+        } else {
+          this.subAssembly[1].value = 'Model 2';
+        }
         this.generateId_part();
       },
 
@@ -239,11 +247,18 @@ export default {
       async updateScanDetails() {
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date+' '+time;
+        this.t2 = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+this.t2;
         this.scanData.T2=dateTime;
-        this.scanData.cycletime=this.scanData.T2-this.scanData.T1;
-        await this.$axios.$post('scan-details', this.scanData);
+        var a = this.t1.split(':');
+        var b = this.t2.split(':');
+        this.t1 = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+        this.t2 = (+b[0]) * 60 * 60 + (+b[1]) * 60 + (+b[2]); 
+        this.scanData.Cycle_Time=Math.abs(this.t2 - this.t1);
+        console.log(this.scanData.T2);
+        console.log(this.scanData.T1);
+        console.log(this.scanData.Cycle_Time);
+        await this.$axios.$post('/scan-details', this.scanData);
         this.start();
       },
 
