@@ -131,6 +131,7 @@
 <script>
 
 export default {
+   middleware: ['auth','manager'],
    layout:'manager',
    data: () => ({
       labels: [

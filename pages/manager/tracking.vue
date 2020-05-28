@@ -36,7 +36,8 @@
 </template>
 <script>
 export default {
-    layout:'incharge',
+    middleware: ['auth','manager'],
+    layout:'manager',
     data () {
         return {
             chassis:'',

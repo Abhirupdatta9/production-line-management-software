@@ -110,6 +110,7 @@
 <script>
 
 export default {
+  middleware: ['auth','incharge'],
 layout:'incharge',
 data: () => ({
   productivity_model1:{ //line graph

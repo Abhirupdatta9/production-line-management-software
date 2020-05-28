@@ -128,24 +128,25 @@
 <script>
 
 export default {
-layout:'manager',
-data: () => ({
-  productivity_model1:{ //line graph
+  middleware: ['auth','manager'],
+  layout:'manager',
+  data: () => ({
+    productivity_model1:{ //line graph
 
-  },
-  productivity_model2:{ //line graph combined with previous
+    },
+    productivity_model2:{ //line graph combined with previous
 
-  },
-  line_quality:{ //piechart
-    
-  },
-  part_quality:{ //bar graph
+    },
+    line_quality:{ //piechart
+      
+    },
+    part_quality:{ //bar graph
 
-  }, 
-  Line_id:"L01",
-  sct_model1:{},
-  sct_model2:{},
-}),
+    }, 
+    Line_id:"L01",
+    sct_model1:{},
+    sct_model2:{},
+  }),
 methods:{
   async func_pro(){
     try{

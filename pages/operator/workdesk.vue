@@ -108,7 +108,7 @@
 
 <script>
 export default {
-
+    middleware: ['auth','operator'],
     layout:'operator',
     data() {
         return{
