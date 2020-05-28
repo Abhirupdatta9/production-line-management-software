@@ -1,17 +1,18 @@
 <template>
 <div>
+  <v-img src="/bgall.jpg" width="100%" height="800px">
   <br><br><br><br><br>
   <v-row>
     <v-col cols="8" offset="2">
-      <v-card class="px-5 py-8" outlined height="580" >
+      <v-card class="px-5 py-8" elevation="5" outlined height="580" >
         <v-row>
           <v-col cols="4">
-            <v-text-field
+            <v-btn
             readonly
-            value="Line Number : 1"
-            outlined
+            dark color="#5e35b1"
+            solo
             dense
-          ></v-text-field>
+          >Line Number L01</v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -21,7 +22,7 @@
               :headers="headers"
               :items="stations"
               :items-per-page="5"
-              class="elevation-1"
+              class="elevation-5"
             >
               <template v-slot:top>
                 <v-toolbar flat>
@@ -30,7 +31,7 @@
                 </v-toolbar>
               </template>
               <template  v-slot:item.operator="{ item }">
-                <v-btn v-if="item.assigned != true" small outlined @click="assign(item.number)">Assign</v-btn>
+                <v-btn v-if="item.assigned != true" dark color="#5e35b1" small  @click="assign(item.number)">Assign</v-btn>
                 <template v-else>
                   
                   {{item.operator}}
@@ -58,7 +59,7 @@
                   <v-toolbar-title>Available Operators</v-toolbar-title>
                   <v-spacer></v-spacer>  
                                
-                  <v-btn small @click="done()">Done</v-btn>
+                  <v-btn small dark color="#5e35b1" @click="done()">Done</v-btn>
                 
                 </v-toolbar>
               </template>
@@ -69,7 +70,7 @@
       </v-card>
     </v-col>
   </v-row>
-
+  </v-img>
 </div>
 </template>
 

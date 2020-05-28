@@ -1,16 +1,18 @@
 <template>
     <div>
+        <v-img src="/bgall.jpg" width="100%" height="800px">
         <br><br><br><br>
         <v-row>
             <v-col cols="8" offset="2">
-                <v-card class="px-3 py-3" outlined>
+                <v-card elevation="5" class="px-3 py-3" outlined>
                     <v-row>
                         <v-col cols="3">
-                            <v-text-field
-                            value="Line number : 1"
-                            outlined
+                            <v-btn
+                            readonly
+                            dark color="#5e35b1"
+                            solo
                             dense>
-                            </v-text-field>
+                            Line Number L01</v-btn>
                         </v-col>
                         <v-col cols="3" offset="4">
                             <v-select
@@ -19,11 +21,11 @@
                             label="Select Station"
                             outlined
                             dense
-                            
+                            color="#5e35b1"
                             ></v-select>
                         </v-col>
                         <v-col cols="">
-                            <v-btn outlined block @click="show()">Show</v-btn>
+                            <v-btn block dark color="#5e35b1" @click="show()">Show</v-btn>
                         </v-col>
                     </v-row>
                     <v-row>
@@ -32,7 +34,7 @@
                             :headers="headers"
                             :items="scan"
                             :items-per-page="5"
-                            class="elevation-1"
+                            class="elevation-5"
                             >
                             <template v-slot:top>
                                 <v-toolbar flat>
@@ -46,6 +48,7 @@
                 </v-card>
             </v-col>
         </v-row>
+        </v-img>
     </div>
 </template>
 <script>

@@ -1,5 +1,7 @@
 <template>
-<v-img src="/bgall.jpg">
+<div>
+<br><br>
+<v-img src="/bgall.jpg" width="100%" height="1000px">
   <v-row>
     <v-col cols="8" offset="2">
       <br><br><br><br><br>
@@ -26,13 +28,13 @@
       </v-row>
       <v-row>
         <v-col >
-          <v-btn block outlined @click="buzzer(user.email)">Report error</v-btn>
+          <v-btn block dark color="#5e35b1"  @click="buzzer(user.email)">Report error</v-btn>
         </v-col>
         <v-col >
-          <v-btn block outlined @click="start()">Start scanning</v-btn>
+          <v-btn block dark color="#5e35b1" @click="start()">Start scanning</v-btn>
         </v-col>
         <v-col >
-          <v-btn block outlined @click="clear()">Stop scanning</v-btn>
+          <v-btn block dark color="#5e35b1" @click="clear()">Stop scanning</v-btn>
         </v-col>
       </v-row>
       <v-row>
@@ -46,14 +48,14 @@
       </v-row>
 
       <!-- scan interface card -->
-      <v-card outlined height="380px" class="pa-5">
+      <v-card outlined elevation="5" height="380px" class="pa-5">
         <center><p class="display-1 font-weight-light">Scan Interface</p></center>
         <v-container>
           <v-row>
 
             <!-- subassembly card -->
             <v-col>
-              <v-card outlined class="px-5 py-3" height="230px">
+              <v-card outlined elevation="5" class="px-5 py-3" height="230px">
                 <center><h2 class="font-weight-light">Subassembly</h2></center>
                 <br>
                 <v-row dense v-for="item in subAssembly" :key="item" >
@@ -72,7 +74,7 @@
             
             <!-- incoming part card -->
             <v-col>
-              <v-card outlined class=" px-5 py-3" height="230px">
+              <v-card outlined  elevation="5" class=" px-5 py-3" height="230px">
                 <center><h2 class="font-weight-light">Incoming Part</h2></center>
                 <br>
                 <v-row dense v-for="item in part" :key="item" >
@@ -94,15 +96,16 @@
       </v-card>
       <v-row>
         <v-col>
-          <v-btn block outlined @click="updateScanDetails()">Accept</v-btn>
+          <v-btn block dark color="#5e35b1" @click="updateScanDetails()">Accept</v-btn>
         </v-col>
         <v-col>
-          <v-btn block outlined @click="reject_part()">Reject</v-btn>
+          <v-btn block dark color="#5e35b1" @click="reject_part()">Reject</v-btn>
         </v-col>
       </v-row>
     </v-col>
   </v-row>
 </v-img>
+</div>
   
 </template>
 
