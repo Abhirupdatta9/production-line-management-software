@@ -45,7 +45,7 @@
 
 <script>
 export default {
-    middleware: ['guest'],
+    //middleware: ['guest'],
     data: () => ({
       items: ['Operator', 'Incharge', 'Manager','Quality','Dispatch'],
       form:{

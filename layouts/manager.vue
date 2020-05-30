@@ -6,7 +6,7 @@
         dark
         fixed
       >
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
 
         <v-toolbar-title>Manager</v-toolbar-title>
 
@@ -53,13 +53,13 @@
         </v-btn>
       </v-app-bar>
 
-      <v-navigation-drawer
+      <!-- <v-navigation-drawer
         v-model="drawer"
         absolute
         bottom
         temporary
       >
-          <!-- <v-list-item two-line>
+          <v-list-item two-line>
             <v-list-item-avatar>
               <img src="https://randomuser.me/api/portraits/women/81.jpg">
             </v-list-item-avatar>
@@ -68,7 +68,7 @@
               <v-list-item-title>Jane Smith</v-list-item-title>
               <v-list-item-subtitle>Logged In</v-list-item-subtitle>
             </v-list-item-content>
-          </v-list-item> -->
+          </v-list-item>
         
 
         <v-list
@@ -86,7 +86,7 @@
               </v-list-item>
           </v-list-item-group>
         </v-list>
-      </v-navigation-drawer>  
+      </v-navigation-drawer>   -->
       <nuxt/>
     </v-content>
   </v-app>
