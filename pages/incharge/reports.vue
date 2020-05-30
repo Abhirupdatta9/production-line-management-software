@@ -126,7 +126,7 @@
 
 export default {
   // middleware: ['auth','manager'],
-  layout:'manager',
+  layout:'incharge',
   data: () => ({
     productivity_model1:[], //line graph
     productivity_model2:[], //line graph combined with previous

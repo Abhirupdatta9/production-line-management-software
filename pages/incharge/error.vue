@@ -25,7 +25,7 @@
         <v-data-table
               :headers="headers"
               :items="buzzers"
-              
+              :items-per-page="5"
             >
             <!-- <template v-slot:top>
                 <v-toolbar flat>
@@ -81,11 +81,24 @@ export default {
 
       //buzzer 
         let response = await this.$axios.$get(`/buzzer/display/${this.Lid}`);
-        this.buzzers.sno = response.data[0].sno;
-        this.buzzers.station_id = response.data[0].station_id;
-        this.buzzers.seen=response.data[0].seen;
-        this.buzzers.time = response.data[0].time;
-        this.buzzers.operator_id = response.data[0].operator_id;
+        console.log(response.data)
+        // this.buzzers.sno = response.data[0].sno;
+        // this.buzzers.station_id = response.data[0].station_id;
+        // this.buzzers.seen=response.data[0].seen;
+        // this.buzzers.time = response.data[0].time;
+        // this.buzzers.operator_id = response.data[0].operator_id;
+        response.data.forEach(error => {
+                    this.buzzers.push(
+                        {
+                          sno: error.sno,
+                          time: error.time,
+                          station_id: error.station_id,
+                          operator_id: error.operator_id,
+                          seen: error.seen,
+                        }
+                    )
+                });
+        
         console.log(this.buzzers);
         
       },
