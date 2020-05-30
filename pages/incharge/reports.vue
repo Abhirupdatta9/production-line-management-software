@@ -1,6 +1,6 @@
 
 <template>
-  <div style="margin-top:50px;background-color:#E8E8E8" >
+  <div style="margin-top:50px;background-color:#E8E8E8" class="pa-8" >
       <v-row>
 
           <v-col>
@@ -89,27 +89,31 @@
             </v-card>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row class="mb-12">
         <v-col>
             <v-data-table
+              :headers="headersProductivity"
+              :items="productivity_model1"
               :items-per-page="5"
               class="elevation-1"
             >
               <template v-slot:top>
                 <v-toolbar flat>
-                  <v-toolbar-title>Table1</v-toolbar-title>
+                  <v-toolbar-title>Productivity Table</v-toolbar-title>
                 </v-toolbar>
               </template>
             </v-data-table>
         </v-col>
         <v-col>
             <v-data-table
+              :headers="headersPart"
+              :items="part_quality"
               :items-per-page="5"
               class="elevation-1"
             >
               <template v-slot:top>
                 <v-toolbar flat>
-                  <v-toolbar-title>Table2</v-toolbar-title>
+                  <v-toolbar-title>Part Quality Table</v-toolbar-title>
                 </v-toolbar>
               </template>
             </v-data-table>
@@ -135,6 +139,26 @@ export default {
     barUpdated: [],
     lineUpdated1: [],
     lineUpdated2: [],
+
+    headersPart: [
+                {
+                    text: 'Station ID',
+                    align: 'start',
+                    sortable: false,
+                    value: 'Station_ID',
+                },
+                { text: 'Rejections', value: 'Rejections' },
+            ],
+
+    headersProductivity: [
+                {
+                    text: 'Station ID',
+                    align: 'start',
+                    sortable: false,
+                    value: 'Station_ID',
+                },
+                { text: 'Avg Cycle time', value: 'Avg' },
+            ],
 
     chartOptions: {
       chart: {
