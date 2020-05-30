@@ -115,7 +115,7 @@
           {
               title: 'View Report',
               icon: 'mdi-chart-areaspline-variant',
-              to:'/manager/view-report'
+              to:'/manager/reports'
           },
           { title: 'Track Assemblies', icon: 'mdi-account-edit', to:'tracking' },
           {

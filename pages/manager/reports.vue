@@ -10,12 +10,17 @@
             v-card--material--has-heading" 
             hover-reveal="">
             <div class="text-start v-card--material__heading mb-n6 v-sheet 
-            theme--dark elevation-6 pa-7" style="width: 100%; height:180px; background-color: rgb(233, 30, 99); border-color: rgb(233, 30, 99);">
+            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: rgb(233, 30, 99); border-color: rgb(233, 30, 99);">
+            
+            <div id="chart">
+              <apexchart type="line" height="200" :options="chartOptions" :series="series"></apexchart>
+            </div>
+            
             </div>
             <v-card height="100">
                 <v-card-title> Producitivity Report </v-card-title>
                 <v-card-subtitle>{{this.Line_id}}</v-card-subtitle>
-                <v-btn text style="margin-top:-30px" @click="func_pro()">Know more</v-btn>
+                <!-- <v-btn text style="margin-top:-30px" @click="func_pro()">Know more</v-btn> -->
               
             </v-card>
             </div>
@@ -28,12 +33,17 @@
             v-card--material--has-heading" 
             hover-reveal="">
             <div class="text-start v-card--material__heading mb-n6 v-sheet 
-            theme--dark elevation-6 pa-7" style="width: 100%; height:180px; background-color: #4caf50; border-color: #4caf50;">
+            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #4caf50; border-color: #4caf50;">
+            
+            <div>
+              <apexchart type="pie" width="300" :options="piechartOptions" :series="pieseries"></apexchart>
+            </div>
+
             </div>
             <v-card height="100">
                 <v-card-title> Line Quality Report </v-card-title>
                 <v-card-subtitle>Description</v-card-subtitle>
-                <v-btn text style="margin-top:-30px" @click="func_line()">Know more</v-btn>
+                <!-- <v-btn text style="margin-top:-30px" @click="func_line()">Know more</v-btn> -->
               
             </v-card>
             </div>
@@ -46,12 +56,17 @@
             v-card--material--has-heading" 
             hover-reveal="">
             <div class="text-start v-card--material__heading mb-n6 v-sheet 
-            theme--dark elevation-6 pa-7" style="width: 100%; height:180px; background-color: #00cae3; border-color: #00cae3;">
+            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #00cae3; border-color: #00cae3;">
+            
+            <div>
+              <apexchart height="200" type="bar" :options="barchartOptions" :series="barseries"></apexchart>
+            </div>
+            
             </div>
             <v-card height="100">
                 <v-card-title> Part Quality Report </v-card-title>
                 <v-card-subtitle>Description</v-card-subtitle>
-                <v-btn text style="margin-top:-30px" @click="func_part()">Know more</v-btn>
+                <!-- <v-btn text style="margin-top:-30px" @click="func_part()">Know more</v-btn> -->
               
             </v-card>
             </div>
@@ -128,25 +143,84 @@
 <script>
 
 export default {
-  middleware: ['auth','manager'],
+  // middleware: ['auth','manager'],
   layout:'manager',
   data: () => ({
-    productivity_model1:{ //line graph
-
-    },
-    productivity_model2:{ //line graph combined with previous
-
-    },
-    line_quality:{ //piechart
-      
-    },
-    part_quality:{ //bar graph
-
-    }, 
+    productivity_model1:[], //line graph
+    productivity_model2:[], //line graph combined with previous
+    line_quality:[], //piechart
+    part_quality:[], //bar graph
     Line_id:"L01",
     sct_model1:{},
     sct_model2:{},
-  }),
+    pieUpdated: [],
+    barUpdated: [],
+    lineUpdated1: [],
+    lineUpdated2: [],
+
+    chartOptions: {
+      chart: {
+        id: 'vuechart-example',
+      },
+      xaxis: {
+        categories: ['Station 1','Station 2','Station 3','Station 4','Station 5'],
+      },
+    },
+    series: [
+            {
+              name: "Model 1",
+              data: [25,20,30,32,19]
+            },
+            {
+              name: "Model 2",
+              data: [18,14,16,8,10]
+            }
+    ],
+
+    //pie chart
+    pieseries: [44, 55, 13, 33],
+    piechartOptions: {
+      chart: {
+              width: 380,
+              type: 'donut',
+            },
+            dataLabels: {
+              enabled: false
+            },
+            // responsive: [{
+            //   breakpoint: 480,
+            //   options: {
+            //     chart: {
+            //       width: 200
+            //     },
+            //     legend: {
+            //       show: false
+            //     }
+            //   }
+            // }],
+            legend: {
+              position: 'right',
+              offsetY: 0,
+              height: 230,
+            }
+      },        
+
+    //bar chart
+    barchartOptions: {
+          chart: {
+            id: 'vuechart-example',
+          },
+          xaxis: {
+            categories: ['Station 1','Station 2','Station 3','Station 4','Station 5'],
+          },
+        },
+        barseries: [{
+          name: 'series-1',
+          data: [1, 2, 4, 3, 5]
+        }]
+          
+  }),     
+
 methods:{
   async func_pro(){
     try{
@@ -162,11 +236,7 @@ methods:{
     {
       console.error();
       
-    }
-
-    //var Lid=this.Line_id;
-    
-    
+    } 
   },
   async func_line(){
     try{
@@ -181,7 +251,7 @@ methods:{
     }
     
   },
-  async func_part(Lid){
+  async func_part(){
     try{
     var Lid=this.Line_id;
     let response = await this.$axios.$get(`/reports/PartQuality/${Lid}`);
@@ -191,11 +261,61 @@ methods:{
     catch(error)
     {
       console.error();
-      
     }
+  },
+
+  assignData() {
+    this.productivity_model1.forEach( (element) => { this.series[0].data.push(100) });
+    this.productivity_model1.forEach( (element) => { this.series[1].data.push(200) });
+    this.chartOptions = {
+      chart: {
+        id: 'vuechart-example',
+      },
+      xaxis: {
+        categories: ['Station 1','Station 2','Station 3','Station 4','Station 5'],
+      },
+    }      
+  },
+
+  lineUpdate() {
+    this.productivity_model1.forEach( (l1) => { let t1 = parseInt(l1.Avg);  this.lineUpdated1.push(t1) } )
+    this.productivity_model2.forEach( (l2) => { let t2 = parseInt(l2.Avg);  this.lineUpdated2.push(t2) } )
+    console.log("l")
+    console.log(this.lineUpdated1)
+    console.log(this.lineUpdated2)
+    console.log("l")
+    this.series = [{ data: this.lineUpdated1},{ data: this.lineUpdated2}] 
+  },
+
+  pieUpdate() {
     
+    this.line_quality.forEach( (e) => { let t = parseInt(e.Rejections);  this.pieUpdated.push(t) } )
+    console.log(this.pieUpdated)
+    this.pieseries = this.pieUpdated
     
+  }, 
+  
+  barUpdate() {
+    this.part_quality.forEach( (part) => { let p = parseInt(part.Rejections);  this.barUpdated.push(p) } )
+    console.log("k")
+    console.log(this.barUpdated)
+    console.log("k")
+    this.barseries = [{ data: this.barUpdated}] 
+ 
   }
+
+},
+
+mounted: function () {
+  this.$nextTick(async function () {
+       this.func_pro()  
+       this.func_line()
+       this.func_part()
+       this.assignData()
+       setTimeout(this.lineUpdate,5000)
+       setTimeout(this.pieUpdate,3000)
+       setTimeout(this.barUpdate,5000)
+  })      
 }
 }
 </script>

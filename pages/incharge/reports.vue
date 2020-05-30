@@ -110,12 +110,12 @@
 <script>
 
 export default {
-  middleware: ['auth','incharge'],
+  // middleware: ['auth','incharge'],
 layout:'incharge',
 data: () => ({
-  productivity_model1:{ //line graph
+  productivity_model1:[], //line graph
 
-  },
+
   productivity_model2:{ //line graph combined with previous
 
   },
@@ -170,6 +170,7 @@ methods:{
   async mounted(){
     let response = await this.$axios.$get(`/incharge/reports/${this.user.email}`);
     this.Line_id = response[0].Line_ID
+    console.log(this.Line_id)
   }
 }
 </script>

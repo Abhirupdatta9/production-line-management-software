@@ -72,7 +72,7 @@
       items: [
         { text: 'Workdesk', icon: 'mdi-chart-bubble', to:'workdesk' },
         { text: 'Line Status', icon: 'mdi-progress-clock', to:'line-status' },
-        { text: 'View Reports', icon: 'mdi-chart-areaspline-variant', to:'view-reports' },
+        { text: 'View Reports', icon: 'mdi-chart-areaspline-variant', to:'reports' },
         { text: 'Track Assemblies', icon: 'mdi-account-edit', to:'tracking' },
         { text: 'Error Details', icon: 'mdi-alert-circle', to:'error' },
         { text: 'Help', icon: 'mdi-help' , to:'help'},
