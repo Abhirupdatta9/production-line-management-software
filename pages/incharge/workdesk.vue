@@ -12,7 +12,7 @@
             dark color="#5e35b1"
             solo
             dense
-          >Line Number L01</v-btn>
+          >Line Number : {{this.Line_id}}</v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -81,6 +81,7 @@ export default {
     data: () => ({
       operators_hidden: true,
       selected: [],
+      Line_id : '',
       station_no: '',
       operator: false,
       headers: [
@@ -181,10 +182,14 @@ export default {
 
       setOperator(operator) {
         console.log(operator)
-        
       }
 
     },
+
+    async mounted(){
+      let response = await this.$axios.$get(`/incharge/reports/${this.user.email}`);
+      this.Line_id = response[0].Line_ID
+    }
 
 }
 </script>

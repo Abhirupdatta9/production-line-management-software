@@ -19,7 +19,7 @@
                         dark color="#5e35b1"
                         solo
                         dense>
-                        Errors for Line Number L01</v-btn>
+                        Errors for Line Number : {{this.Lid}}</v-btn>
              </v-col>
             </v-row>
         <v-data-table
@@ -62,7 +62,7 @@ export default {
           { text: 'Operator ID', value: 'operator_id' },
            { text: 'Seen', value: 'seen' },
       ],
-      Lid:'L01',
+      Lid:'',
       buzzers: [
         // {
         //   sno:1,
@@ -74,9 +74,13 @@ export default {
       ],  
 }},
 
-       async mounted(){
-        var Lid=this.Lid;
-        let response = await this.$axios.$get(`/buzzer/display/${Lid}`);
+    async mounted(){
+      //dynamically fetching line ID
+        let res = await this.$axios.$get(`/incharge/reports/${this.user.email}`);
+        this.Lid = res[0].Line_ID
+
+      //buzzer 
+        let response = await this.$axios.$get(`/buzzer/display/${this.Lid}`);
         this.buzzers.sno = response.data[0].sno;
         this.buzzers.station_id = response.data[0].station_id;
         this.buzzers.seen=response.data[0].seen;
