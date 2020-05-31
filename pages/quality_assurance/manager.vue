@@ -56,7 +56,7 @@
 </template>
 <script>
 export default {
-    middleware: ['auth','quality'],
+    // middleware: ['auth','quality'],
     layout: 'quality',
     data() {
         return{

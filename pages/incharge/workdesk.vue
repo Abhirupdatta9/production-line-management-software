@@ -145,7 +145,7 @@ export default {
           this.operators_hidden = false
           this.station_no = number
 
-          let response = await this.$axios.$get(`incharge/workdesk/${number}`);
+          let response = await this.$axios.$get(`incharge/workdesk/${number}/${this.Line_id}`);
           this.operators = response.data
           // console.log(this.selected);
         }
@@ -171,7 +171,7 @@ export default {
             return station.number == sno
           })
           var selected_id = this.selected[0].email
-          await this.$axios.$post(`assign-station/${this.station_no}/${selected_id}`);
+          await this.$axios.$post(`assign-station/${this.station_no}/${selected_id}/${this.Line_id}`);
 
         }
         catch(error){

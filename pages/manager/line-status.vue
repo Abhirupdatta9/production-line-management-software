@@ -1,6 +1,7 @@
 <template>
     <div>
         <br><br><br><br>
+        <v-img src="/bgall.jpg" width="100%" height="1000px">
         <v-row>
             <v-col cols="8" offset="2">
                 <v-card class="px-3 py-3" outlined>
@@ -46,6 +47,7 @@
                 </v-card>
             </v-col>
         </v-row>
+        </v-img>
     </div>
 </template>
 <script>

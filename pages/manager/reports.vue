@@ -2,6 +2,7 @@
 <template>
 
   <div style="margin-top:50px;background-color:#E8E8E8" class="pa-8" >
+    <!-- <v-img src="/bgall.jpg" width="100%" height="1000px"> -->
       <v-row>
 
           <v-col>
@@ -20,7 +21,12 @@
             </div>
             <v-card height="100">
                 <v-card-title> Producitivity Report </v-card-title>
-                <v-card-subtitle>{{this.Line_id}}</v-card-subtitle>
+                <!-- <v-card-subtitle>{{this.Line_id}}</v-card-subtitle> -->
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field small dense label="Enter Line Id" outlined style="margin-top:-25px; margin-left:16px"  v-model="Line_id"></v-text-field>
+                  </v-col>
+                </v-row>
                 <!-- <v-btn text style="margin-top:-30px" @click="func_pro()">Know more</v-btn> -->
               
             </v-card>
@@ -43,8 +49,7 @@
             </div>
             <v-card height="100">
                 <v-card-title> Line Quality Report </v-card-title>
-                <v-card-subtitle>Description</v-card-subtitle>
-                <!-- <v-btn text style="margin-top:-30px" @click="func_line()">Know more</v-btn> -->
+                
               
             </v-card>
             </div>
@@ -66,8 +71,11 @@
             </div>
             <v-card height="100">
                 <v-card-title> Part Quality Report </v-card-title>
-                <v-card-subtitle>Description</v-card-subtitle>
-                <!-- <v-btn text style="margin-top:-30px" @click="func_part()">Know more</v-btn> -->
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field small dense label="Enter Line Id" outlined style="margin-top:-25px; margin-left:16px"  v-model="Line_id"></v-text-field>
+                  </v-col>
+                </v-row>
               
             </v-card>
             </div>
@@ -75,39 +83,30 @@
           </v-col>
       </v-row>
       <v-row>
-        <v-col>
-            <v-card style="margin-left:20px; " width="250" height="120">
+        <v-col offset="1">
+            <v-card style="margin-left:20px; " width="350" height="120">
             <v-row>
-                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img> </v-col>
-                    <v-col> <v-card-title class="display-2">250</v-card-title>
-                    <v-card-text>Desciption 1</v-card-text></v-col>
+                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/rejection.png"></v-img> </v-col>
+                    <v-col> <v-card-title class="display-2">{{this.per_rej}}%</v-card-title>
+                    <v-card-text small>% Rejections</v-card-text></v-col>
             </v-row>
             </v-card>
         </v-col>
         <v-col>
-            <v-card style="margin-left:20px" width="250" height="120">
+            <v-card style="margin-left:20px" width="350" height="120">
             <v-row>
-                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img> </v-col>
-                    <v-col> <v-card-title class="display-2">250</v-card-title>
-                    <v-card-text>Desciption 1</v-card-text></v-col>
+                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/car.png"></v-img> </v-col>
+                    <v-col> <v-card-title class="display-2">{{this.tot}}</v-card-title>
+                    <v-card-text small>Total Assemblies</v-card-text></v-col>
             </v-row>
             </v-card>
         </v-col>
         <v-col>
-            <v-card style="margin-left:20px" width="250" height="120">
+            <v-card style="margin-left:20px" width="350" height="120">
             <v-row>
-                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img> </v-col>
+                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/time.png"></v-img> </v-col>
                     <v-col> <v-card-title class="display-2">250</v-card-title>
-                    <v-card-text>Desciption 1</v-card-text></v-col>
-            </v-row>
-            </v-card>
-        </v-col>
-        <v-col>
-            <v-card style="margin-left:20px" width="250" height="120">
-            <v-row>
-                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img> </v-col>
-                    <v-col> <v-card-title class="display-2">250</v-card-title>
-                    <v-card-text>Desciption 1</v-card-text></v-col>
+                    <v-card-text small>Average Deviation</v-card-text></v-col>
             </v-row>
             </v-card>
         </v-col>
@@ -142,6 +141,7 @@
             </v-data-table>
         </v-col>
       </v-row>
+    <!-- </v-img> -->
   </div>
 </template>
 
@@ -162,6 +162,10 @@ export default {
     barUpdated: [],
     lineUpdated1: [],
     lineUpdated2: [],
+    SCT2:[50,25,12,32,18],
+    SCT1:[58,20,10,30,20],
+    per_rej:"",
+    tot:"",
 
 
     headersPart: [
@@ -213,8 +217,10 @@ export default {
               type: 'donut',
             },
             dataLabels: {
-              enabled: false
+              enabled: true,
+
             },
+            labels : ['Line L01','Line L02','Line L03'],
             // responsive: [{
             //   breakpoint: 480,
             //   options: {
@@ -319,7 +325,32 @@ methods:{
     this.barseries = [{ data: this.barUpdated}] 
  
   },
-
+  async percent_rej(){
+    try{
+    let response_rej = await this.$axios.$get(`/reports/percentage_rej`);
+    this.per_rej = (parseInt(response_rej.data[0].rej)/response_rej.data[0].tot)*100;
+    //console.log(response_rej.data[0].rej);
+    console.log(this.per_rej);
+    }
+    catch(error)
+    {
+      console.error();
+      
+    }
+  },
+  async total_subAssembly(){
+    try{
+    let response = await this.$axios.$get(`/reports/total_subassembly`);
+    this.tot = (parseInt(response.data[0].Total));
+    //console.log(response_rej.data[0].rej);
+    console.log(this.tot);
+    }
+    catch(error)
+    {
+      console.error();
+      
+    }
+  },
   caldeviation() {
     let d=0
     this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[d]) - parseInt(element.Avg); 
@@ -337,6 +368,9 @@ mounted: function () {
        this.func_line()
        this.func_part()
       
+       
+       this.percent_rej()
+       this.total_subAssembly()
        setTimeout(this.lineUpdate,5000)
        setTimeout(this.pieUpdate,3000)
        setTimeout(this.barUpdate,5000)
