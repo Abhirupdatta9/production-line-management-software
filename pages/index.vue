@@ -45,7 +45,7 @@
 
 <script>
 export default {
-    //middleware: ['guest'],
+    // middleware: ['guest'],
     data: () => ({
       items: ['Operator', 'Incharge', 'Manager','Quality','Dispatch'],
       form:{
@@ -66,7 +66,7 @@ export default {
               else if(this.form.name === 'Manager')
                 this.$router.push("/manager/reports");
               else if(this.form.name === 'Quality')
-                this.$router.push("/quality assurance/manager");
+                this.$router.push("/quality_assurance/manager");
               else if(this.form.name === 'Dispatch')
                 this.$router.push("/dispatch/manager");
           }catch(e){console.log(e);}

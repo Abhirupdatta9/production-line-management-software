@@ -52,11 +52,11 @@
 </template>
 <script>
 export default {
-    // middleware: ['auth','manager'],
+    middleware: ['auth'],
     layout: 'manager',
     data() {
         return {
-            items: ["S01","S02","S03"],
+            items: ["S01","S02","S03","S04","S05"],
             station: "",
             headers: [
                 {

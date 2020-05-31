@@ -151,7 +151,7 @@
 <script>
 
 export default {
-  // middleware: ['auth','manager'],
+  middleware: ['auth'],
   layout:'manager',
   data: () => ({
     productivity_model1:[], //line graph
@@ -351,7 +351,7 @@ methods:{
   async percent_rej(){
     try{
     let response_rej = await this.$axios.$get(`/reports/percentage_rej`);
-    this.per_rej = (parseInt(response_rej.data[0].rej)/response_rej.data[0].tot)*100;
+    this.per_rej = parseInt((parseInt(response_rej.data[0].rej)/parseInt(response_rej.data[0].tot))*100);
     //console.log(response_rej.data[0].rej);
     console.log(this.per_rej);
     }
@@ -376,7 +376,7 @@ methods:{
   },
   caldeviation() {
     let c=0, s=0
-    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[c]) - parseInt(element.Avg); 
+    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(element.Avg) - parseInt(this.sct_model1[c]); 
       s = s + element.Deviation
       console.log(parseInt(element.Avg)- parseInt(this.sct_model1[c]))
       console.log(element.Deviation)
@@ -397,8 +397,8 @@ mounted: function () {
        this.percent_rej()
        this.total_subAssembly()
        setTimeout(this.lineUpdate,8000)
-       setTimeout(this.pieUpdate,5000)
-       setTimeout(this.barUpdate,5000)
+       setTimeout(this.pieUpdate,8000)
+       setTimeout(this.barUpdate,8000)
        setTimeout(this.caldeviation,5000)
   })      
 }

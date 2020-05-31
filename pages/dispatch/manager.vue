@@ -34,7 +34,7 @@
 </template>
 <script>
 export default {
-    // middleware: ['auth','dispatch'],
+    middleware: ['auth'],
     layout: 'dispatch',
     data() {
         return{

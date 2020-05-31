@@ -53,11 +53,11 @@
 </template>
 <script>
 export default {
-    //middleware: ['auth','incharge'],
+    middleware: ['auth'],
     layout: 'incharge',
     data() {
         return {
-            items: ["S01","S02","S03"],
+            items: ["S01","S02","S03","S04","S05"],
             Line_id : '',
             station: "",
             headers: [

@@ -76,7 +76,7 @@
 
 <script>
 export default {
-    // middleware: ['auth','incharge'],
+    middleware: ['auth'],
     layout:'incharge',
     data: () => ({
       operators_hidden: true,

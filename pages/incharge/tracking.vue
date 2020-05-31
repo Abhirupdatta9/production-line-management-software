@@ -11,7 +11,7 @@
             <v-btn @click="submit" type="submit" block large rounded dark color="#5e35b1" style="margin-bottom=-5px;">Submit</v-btn>
         </v-col>
 
-        <v-card elevation="5" width="500px" height="400px" style="margin-top:50px; margin-left:30%; padding-bottom:30px" class="justify-center">
+        <v-card elevation="5" width="500px" height="400px" style="margin-top:50px; margin-left:35%; padding-bottom:30px" class="justify-center">
             
             <v-col cols="12">
             <v-data-table
@@ -37,7 +37,7 @@
 </template>
 <script>
 export default {
-    //middleware: ['auth','incharge'],
+    middleware: ['auth'],
     layout:'incharge',
     data () {
         return {

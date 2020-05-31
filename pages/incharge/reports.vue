@@ -292,7 +292,7 @@ methods:{
   async percent_rej(){
     try{
     let response_rej = await this.$axios.$get(`/reports/percentage_rej`);
-    this.per_rej = (parseInt(response_rej.data[0].rej)/response_rej.data[0].tot)*100;
+    this.per_rej = parseInt((parseInt(response_rej.data[0].rej)/parseInt(response_rej.data[0].tot))*100);
     //console.log(response_rej.data[0].rej);
     console.log(this.per_rej);
     }
@@ -319,7 +319,7 @@ methods:{
 
   async caldeviation() {
     let d=0, s=0
-    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[d]) - parseInt(element.Avg); 
+    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(element.Avg)- parseInt(this.sct_model1[d]); 
       s = s + element.Deviation
       console.log(parseInt(element.Avg)- parseInt(this.sct_model1[d]))
       console.log(element.Deviation)
