@@ -23,8 +23,10 @@
                 <v-card-title> Producitivity Report </v-card-title>
                 <!-- <v-card-subtitle>{{this.Line_id}}</v-card-subtitle> -->
                 <v-row>
-                  <v-col cols="6">
-                    <v-text-field small dense label="Enter Line Id" outlined style="margin-top:-25px; margin-left:16px"  v-model="Line_id"></v-text-field>
+                  <v-col>
+                    <v-row>
+                      <v-col><v-text-field small dense label="Line Id  " outlined style="margin-top:-35px; margin-left:16px"  v-model="Line_id_new"></v-text-field></v-col>
+                    <v-col><v-btn small style="margin-top:-55px; margin-right:-50px" @click="change_lid_prod()">Submit</v-btn></v-col></v-row>
                   </v-col>
                 </v-row>
                 <!-- <v-btn text style="margin-top:-30px" @click="func_pro()">Know more</v-btn> -->
@@ -70,10 +72,13 @@
             <v-card height="100">
                 <v-card-title> Part Quality Report </v-card-title>
                 <v-row>
-                  <v-col cols="6">
-                    <v-text-field small dense label="Enter Line Id" outlined style="margin-top:-25px; margin-left:16px"  v-model="Line_id"></v-text-field>
+                  <v-col>
+                    <v-row>
+                      <v-col><v-text-field small dense label="Line Id  " outlined style="margin-top:-35px; margin-left:16px"  v-model="Line_id_new"></v-text-field></v-col>
+                    <v-col><v-btn small style="margin-top:-55px; margin-right:-50px" @click="change_lid_part()">Submit</v-btn></v-col></v-row>
                   </v-col>
                 </v-row>
+
               
             </v-card>
             </div>
@@ -81,8 +86,8 @@
           </v-col>
       </v-row>
       <v-row>
-        <v-col offset="1">
-            <v-card style="margin-left:20px; " width="300" height="120">
+        <v-col>
+            <v-card style="margin-left:30px" width="320" height="120">
             <v-row>
                    <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/rejection.png"></v-img> </v-col>
                     <v-col > <v-card-title class="display-1">{{this.per_rej}}%</v-card-title>
@@ -91,7 +96,7 @@
             </v-card>
         </v-col>
         <v-col>
-            <v-card style="margin-left:20px" width="300" height="120">
+            <v-card style="margin-left:20px" width="320" height="120">
             <v-row>
                    <v-col > <v-img height="100" style="margin-left:10px" width='100' src="/car.png"></v-img> </v-col>
                     <v-col> <v-card-title class="display-1">{{this.tot}}</v-card-title>
@@ -100,7 +105,7 @@
             </v-card>
         </v-col>
         <v-col>
-            <v-card style="margin-left:20px" width="300" height="120">
+            <v-card style="margin-left:20px" width="320" height="120">
             <v-row>
                    <v-col cols="5"> <v-img height="100" style="margin-left:10px" width='100' src="/time.png"></v-img> </v-col>
                     <v-col cols="7"> <v-card-title class="display-1">{{this.avd}}</v-card-title>
@@ -164,6 +169,8 @@ export default {
     SCT1:[58,20,10,30,20],
     per_rej:"",
     tot:"",
+    line_id_new:"",
+
     avd:"",
 
     headersPart: [
@@ -254,6 +261,16 @@ export default {
   }),     
 
 methods:{
+  change_lid_prod(){
+    this.Line_id=this.line_id_new;
+    this.func_pro()
+    this.lineUpdate()
+  },
+    change_lid_part(){
+    this.Line_id=this.line_id_new;
+    this.func_part()
+    this.barUpdate()
+  },
   async func_pro(){
     try{
     var Lid=this.Line_id;
@@ -298,6 +315,8 @@ methods:{
 
 
   lineUpdate() {
+    this.lineUpdated1=[]
+    this.lineUpdated2=[]
     this.productivity_model1.forEach( (l1) => { let t1 = parseInt(l1.Avg);  this.lineUpdated1.push(t1) } )
     this.productivity_model2.forEach( (l2) => { let t2 = parseInt(l2.Avg);  this.lineUpdated2.push(t2) } )
     console.log("l")
@@ -316,6 +335,7 @@ methods:{
   }, 
   
   barUpdate() {
+    this.barUpdated=[]
     this.part_quality.forEach( (part) => { let p = parseInt(part.Rejections);  this.barUpdated.push(p) } )
     console.log("k")
     console.log(this.barUpdated)
