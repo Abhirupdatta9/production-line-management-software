@@ -21,7 +21,12 @@
             </div>
             <v-card height="100">
                 <v-card-title> Producitivity Report </v-card-title>
-                <v-card-subtitle>{{this.Line_id}}</v-card-subtitle>
+                <!-- <v-card-subtitle>{{this.Line_id}}</v-card-subtitle> -->
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field small dense label="Enter Line Id" outlined style="margin-top:-25px; margin-left:16px"  v-model="Line_id"></v-text-field>
+                  </v-col>
+                </v-row>
                 <!-- <v-btn text style="margin-top:-30px" @click="func_pro()">Know more</v-btn> -->
               
             </v-card>
@@ -44,8 +49,7 @@
             </div>
             <v-card height="100">
                 <v-card-title> Line Quality Report </v-card-title>
-                <v-card-subtitle>Description</v-card-subtitle>
-                <!-- <v-btn text style="margin-top:-30px" @click="func_line()">Know more</v-btn> -->
+                
               
             </v-card>
             </div>
@@ -67,8 +71,11 @@
             </div>
             <v-card height="100">
                 <v-card-title> Part Quality Report </v-card-title>
-                <v-card-subtitle>Description</v-card-subtitle>
-                <!-- <v-btn text style="margin-top:-30px" @click="func_part()">Know more</v-btn> -->
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field small dense label="Enter Line Id" outlined style="margin-top:-25px; margin-left:16px"  v-model="Line_id"></v-text-field>
+                  </v-col>
+                </v-row>
               
             </v-card>
             </div>
