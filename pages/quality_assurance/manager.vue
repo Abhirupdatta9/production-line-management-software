@@ -1,5 +1,6 @@
 <template>
     <div>
+        <v-img src="/bgall.jpg" width="100%" height="800px">
         <br><br><br><br>
         <v-row>
             <v-col cols="8" offset="2">
@@ -52,6 +53,7 @@
                  <v-btn block outlined @click="update()">Update Data</v-btn>
             </v-col>
         </v-row>
+        </v-img>
     </div>
 </template>
 <script>
