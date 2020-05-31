@@ -37,7 +37,7 @@
 </template>
 <script>
 export default {
-    middleware: ['auth','manager'],
+    // middleware: ['auth','manager'],
     layout:'manager',
     data () {
         return {
