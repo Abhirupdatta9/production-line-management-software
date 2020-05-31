@@ -90,7 +90,7 @@
             <v-card style="margin-left:30px" width="320" height="120">
             <v-row>
                    <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/rejection.png"></v-img> </v-col>
-                    <v-col> <v-card-title class="display-2">{{this.per_rej}}%</v-card-title>
+                    <v-col > <v-card-title class="display-1">{{this.per_rej}}%</v-card-title>
                     <v-card-text small>% Rejections</v-card-text></v-col>
             </v-row>
             </v-card>
@@ -98,8 +98,8 @@
         <v-col>
             <v-card style="margin-left:20px" width="320" height="120">
             <v-row>
-                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/car.png"></v-img> </v-col>
-                    <v-col> <v-card-title class="display-2">{{this.tot}}</v-card-title>
+                   <v-col > <v-img height="100" style="margin-left:10px" width='100' src="/car.png"></v-img> </v-col>
+                    <v-col> <v-card-title class="display-1">{{this.tot}}</v-card-title>
                     <v-card-text small>Total Assemblies</v-card-text></v-col>
             </v-row>
             </v-card>
@@ -107,8 +107,8 @@
         <v-col>
             <v-card style="margin-left:20px" width="320" height="120">
             <v-row>
-                   <v-col cols="6"> <v-img height="100" style="margin-left:10px" width='100' src="/time.png"></v-img> </v-col>
-                    <v-col cols="6"> <v-card-title class="display-2">250</v-card-title>
+                   <v-col cols="5"> <v-img height="100" style="margin-left:10px" width='100' src="/time.png"></v-img> </v-col>
+                    <v-col cols="7"> <v-card-title class="display-1">{{this.avd}}</v-card-title>
                     <v-card-text small class="caption">Average Deviation</v-card-text></v-col>
             </v-row>
             </v-card>
@@ -171,6 +171,7 @@ export default {
     tot:"",
     line_id_new:"",
 
+    avd:"",
 
     headersPart: [
                 {
@@ -369,12 +370,14 @@ methods:{
     }
   },
   caldeviation() {
-    let d=0
-    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[d]) - parseInt(element.Avg); 
-      console.log(parseInt(element.Avg)- parseInt(this.sct_model1[d]))
+    let c=0, s=0
+    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[c]) - parseInt(element.Avg); 
+      s = s + element.Deviation
+      console.log(parseInt(element.Avg)- parseInt(this.sct_model1[c]))
       console.log(element.Deviation)
-      d++
+      c++
     })
+    this.avd = s/c
   }
 
 },
@@ -388,7 +391,7 @@ mounted: function () {
        
        this.percent_rej()
        this.total_subAssembly()
-       setTimeout(this.lineUpdate,5000)
+       setTimeout(this.lineUpdate,8000)
        setTimeout(this.pieUpdate,3000)
        setTimeout(this.barUpdate,5000)
        setTimeout(this.caldeviation,5000)
