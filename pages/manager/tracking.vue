@@ -1,5 +1,6 @@
 <template>
     <div>
+        <v-img src="/bgall.jpg" width="100%" height="1000px">
         <v-col cols="2" offset="5" float>
             <v-form style="margin-top:100px;" @submit.prevent="submit"> 
                 <v-text-field solo rounded :type="'text'" label="Enter Chassis ID" required style="margin-bottom:-30px" v-model="chassis" class="justify-center"></v-text-field>
@@ -31,7 +32,7 @@
           </v-col>
 
         </v-card>
-
+        </v-img>
     </div>
 </template>
 <script>

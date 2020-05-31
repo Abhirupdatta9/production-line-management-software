@@ -1,5 +1,7 @@
 <template>
+<v-img src="/bgall.jpg" width="100%" height="1000px">
 <v-container fluid>
+
     <v-row>
         <v-col cols="8" offset="2">
             <br><br><br><br>
@@ -29,6 +31,7 @@
        
   
 </v-container>
+</v-img>
 </template>
 
 <script>
