@@ -340,7 +340,7 @@ mounted: function () {
        this.total_subAssembly()
    
        setTimeout(this.lineUpdate,8000)
-       setTimeout(this.pieUpdate,3000)
+       setTimeout(this.pieUpdate,5000)
        setTimeout(this.barUpdate,5000)
        setTimeout(this.caldeviation,5000)
   })      

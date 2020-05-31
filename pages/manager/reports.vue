@@ -291,7 +291,9 @@ methods:{
     try{
     let response1 = await this.$axios.$get(`/reports/LineQuality`);
     this.line_quality = response1.data;
+    // console.log(okok)
     console.log(this.line_quality);
+    // console.log(okok)
     }
     catch(error)
     {
@@ -305,6 +307,7 @@ methods:{
     var Lid=this.Line_id;
     let response = await this.$axios.$get(`/reports/PartQuality/${Lid}`);
     this.part_quality = response.data;
+    console.log("part")
     console.log(this.part_quality);
     }
     catch(error)
@@ -329,7 +332,9 @@ methods:{
   pieUpdate() {
     
     this.line_quality.forEach( (e) => { let t = parseInt(e.Rejections);  this.pieUpdated.push(t) } )
+    console.log("p")
     console.log(this.pieUpdated)
+    console.log("p")
     this.pieseries = this.pieUpdated
     
   }, 
@@ -337,9 +342,9 @@ methods:{
   barUpdate() {
     this.barUpdated=[]
     this.part_quality.forEach( (part) => { let p = parseInt(part.Rejections);  this.barUpdated.push(p) } )
-    console.log("k")
+    console.log("b")
     console.log(this.barUpdated)
-    console.log("k")
+    console.log("b")
     this.barseries = [{ data: this.barUpdated}] 
  
   },
@@ -392,7 +397,7 @@ mounted: function () {
        this.percent_rej()
        this.total_subAssembly()
        setTimeout(this.lineUpdate,8000)
-       setTimeout(this.pieUpdate,3000)
+       setTimeout(this.pieUpdate,5000)
        setTimeout(this.barUpdate,5000)
        setTimeout(this.caldeviation,5000)
   })      
