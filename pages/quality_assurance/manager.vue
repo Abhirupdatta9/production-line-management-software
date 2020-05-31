@@ -50,7 +50,7 @@
         </v-row>
         <v-row>
             <v-col cols="2" offset="5">
-                 <v-btn block outlined @click="update()">Update Data</v-btn>
+                 <v-btn block dark color="#5e35b1" @click="update()">Update Data</v-btn>
             </v-col>
         </v-row>
         </v-img>
