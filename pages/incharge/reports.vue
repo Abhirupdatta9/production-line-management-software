@@ -133,8 +133,8 @@ export default {
     line_quality:[], //piechart
     part_quality:[], //bar graph
     Line_id:"L01",
-    sct_model1:{},
-    sct_model2:{},
+    sct_model1:[50,25,12,32,18],
+    sct_model2:[40,20,10,30,20],
     pieUpdated: [],
     barUpdated: [],
     lineUpdated1: [],
@@ -148,6 +148,7 @@ export default {
                     value: 'Station_ID',
                 },
                 { text: 'Rejections', value: 'Rejections' },
+                
             ],
 
     headersProductivity: [
@@ -158,6 +159,7 @@ export default {
                     value: 'Station_ID',
                 },
                 { text: 'Avg Cycle time', value: 'Avg' },
+                { text: 'Deviation', value: 'Deviation' },
             ],
 
     chartOptions: {
@@ -170,11 +172,11 @@ export default {
     },
     series: [
             {
-              name: "Model 1",
+              name: "Model 2",
               data: [25,20,30,32,19]
             },
             {
-              name: "Model 2",
+              name: "Model 1",
               data: [18,14,16,8,10]
             }
     ],
@@ -266,18 +268,6 @@ methods:{
     }
   },
 
-  assignData() {
-    this.productivity_model1.forEach( (element) => { this.series[0].data.push(100) });
-    this.productivity_model1.forEach( (element) => { this.series[1].data.push(200) });
-    this.chartOptions = {
-      chart: {
-        id: 'vuechart-example',
-      },
-      xaxis: {
-        categories: ['Station 1','Station 2','Station 3','Station 4','Station 5'],
-      },
-    }      
-  },
 
   lineUpdate() {
     this.productivity_model1.forEach( (l1) => { let t1 = parseInt(l1.Avg);  this.lineUpdated1.push(t1) } )
@@ -304,6 +294,16 @@ methods:{
     console.log("k")
     this.barseries = [{ data: this.barUpdated}] 
  
+  },
+
+
+  async caldeviation() {
+    let c=0
+    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[c]) - parseInt(element.Avg); 
+      // console.log(parseInt(element.Avg)- parseInt(this.sct_model1[c]))
+      console.log(element.Deviation)
+      c++
+    })
   }
 
 },
@@ -313,10 +313,11 @@ mounted: function () {
        this.func_pro()  
        this.func_line()
        this.func_part()
-       this.assignData()
+   
        setTimeout(this.lineUpdate,5000)
        setTimeout(this.pieUpdate,3000)
        setTimeout(this.barUpdate,5000)
+       setTimeout(this.caldeviation,5000)
   })      
 }
 }

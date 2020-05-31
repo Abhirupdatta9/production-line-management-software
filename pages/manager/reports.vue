@@ -182,6 +182,7 @@ export default {
                     value: 'Station_ID',
                 },
                 { text: 'Avg Cycle time', value: 'Avg' },
+                { text: 'Deviation', value: 'Deviation' },
             ],
 
 
@@ -329,6 +330,15 @@ methods:{
     console.log("k")
     this.barseries = [{ data: this.barUpdated}] 
  
+  },
+
+  caldeviation() {
+    let c=0
+    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[c]) - parseInt(element.Avg); 
+      // console.log(parseInt(element.Avg)- parseInt(this.sct_model1[c]))
+      console.log(element.Deviation)
+      c++
+    })
   }
 
 },
@@ -342,6 +352,7 @@ mounted: function () {
        setTimeout(this.lineUpdate,5000)
        setTimeout(this.pieUpdate,3000)
        setTimeout(this.barUpdate,5000)
+       setTimeout(this.caldeviation,5000)
   })      
 }
 }
