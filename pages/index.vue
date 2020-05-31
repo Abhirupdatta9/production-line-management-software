@@ -64,7 +64,7 @@ export default {
               else if(this.form.name === 'Incharge')
                 this.$router.push("/incharge/workdesk");
               else if(this.form.name === 'Manager')
-                this.$router.push("/manager/dashboard");
+                this.$router.push("/manager/reports");
               else if(this.form.name === 'Quality')
                 this.$router.push("/quality assurance/manager");
               else if(this.form.name === 'Dispatch')
