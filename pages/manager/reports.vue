@@ -212,8 +212,10 @@ export default {
               type: 'donut',
             },
             dataLabels: {
-              enabled: false
+              enabled: true,
+
             },
+            labels : ['Line L01','Line L02','Line L03'],
             // responsive: [{
             //   breakpoint: 480,
             //   options: {
