@@ -6,7 +6,7 @@
         dark
         fixed
       >
-        <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
         <v-toolbar-title>Manager</v-toolbar-title>
 
@@ -53,7 +53,7 @@
         </v-btn>
       </v-app-bar>
 
-      <!-- <v-navigation-drawer
+      <v-navigation-drawer
         v-model="drawer"
         absolute
         bottom
@@ -86,7 +86,7 @@
               </v-list-item>
           </v-list-item-group>
         </v-list>
-      </v-navigation-drawer>   -->
+      </v-navigation-drawer>  
       <nuxt/>
     </v-content>
   </v-app>

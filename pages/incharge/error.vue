@@ -60,17 +60,10 @@ export default {
           { text: 'Time', value: 'time' },
           { text: 'Station ID', value: 'station_id' },
           { text: 'Operator ID', value: 'operator_id' },
-           { text: 'Seen', value: 'seen' },
+          // { text: 'Seen', value: 'seen' },
       ],
       Lid:'',
       buzzers: [
-        // {
-        //   sno:1,
-        //   time:'2020.03.12 12:17:00',
-        //   station_id:'S01',
-        //   operator_id:'op0101@xyz.com',
-        //   seen:0,
-        // }
       ],  
 }},
 
@@ -82,11 +75,6 @@ export default {
       //buzzer 
         let response = await this.$axios.$get(`/buzzer/display/${this.Lid}`);
         console.log(response.data)
-        // this.buzzers.sno = response.data[0].sno;
-        // this.buzzers.station_id = response.data[0].station_id;
-        // this.buzzers.seen=response.data[0].seen;
-        // this.buzzers.time = response.data[0].time;
-        // this.buzzers.operator_id = response.data[0].operator_id;
         response.data.forEach(error => {
                     this.buzzers.push(
                         {
@@ -98,6 +86,8 @@ export default {
                         }
                     )
                 });
+        let count = 1;
+        this.buzzers.forEach(i => {i.sno = count; count++})
         
         console.log(this.buzzers);
         
