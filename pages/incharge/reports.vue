@@ -3,7 +3,7 @@
   <div style="margin-top:50px;background-color:#E8E8E8" class="pa-8" >
       <v-row>
 
-          <v-col>
+          <v-col cols="6">
             <div class="v-card--material 
             pa-3 v-card--material-chart 
             v-card v-sheet theme--light 
@@ -27,7 +27,7 @@
             
           </v-col>
           
-          <v-col>
+          <v-col cols="6">
             <div class="v-card--material 
             pa-3 v-card--material-chart 
             v-card v-sheet theme--light 
