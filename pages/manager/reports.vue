@@ -48,9 +48,7 @@
 
             </div>
             <v-card height="100">
-                <v-card-title> Line Quality Report </v-card-title>
-                
-              
+                <v-card-title> Line Quality Report </v-card-title>              
             </v-card>
             </div>
 
@@ -84,7 +82,7 @@
       </v-row>
       <v-row>
         <v-col offset="1">
-            <v-card style="margin-left:20px; " width="350" height="120">
+            <v-card style="margin-left:20px; " width="300" height="120">
             <v-row>
                    <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/rejection.png"></v-img> </v-col>
                     <v-col> <v-card-title class="display-2">{{this.per_rej}}%</v-card-title>
@@ -93,7 +91,7 @@
             </v-card>
         </v-col>
         <v-col>
-            <v-card style="margin-left:20px" width="350" height="120">
+            <v-card style="margin-left:20px" width="300" height="120">
             <v-row>
                    <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/car.png"></v-img> </v-col>
                     <v-col> <v-card-title class="display-2">{{this.tot}}</v-card-title>
@@ -102,11 +100,11 @@
             </v-card>
         </v-col>
         <v-col>
-            <v-card style="margin-left:20px" width="350" height="120">
+            <v-card style="margin-left:20px" width="300" height="120">
             <v-row>
-                   <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/time.png"></v-img> </v-col>
-                    <v-col> <v-card-title class="display-2">250</v-card-title>
-                    <v-card-text small>Average Deviation</v-card-text></v-col>
+                   <v-col cols="6"> <v-img height="100" style="margin-left:10px" width='100' src="/time.png"></v-img> </v-col>
+                    <v-col cols="6"> <v-card-title class="display-2">250</v-card-title>
+                    <v-card-text small class="caption">Average Deviation</v-card-text></v-col>
             </v-row>
             </v-card>
         </v-col>
