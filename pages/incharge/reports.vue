@@ -52,7 +52,7 @@
           </v-col>
       </v-row>
        <v-row>
-        <v-col >
+        <v-col offset="1">
             <v-card style="margin-left:20px; " width="300" height="120">
             <v-row>
                    <v-col> <v-img height="100" style="margin-left:10px" width='100' src="/rejection.png"></v-img> </v-col>
