@@ -11,10 +11,10 @@
             v-card--material--has-heading" 
             hover-reveal="">
             <div class="text-start v-card--material__heading mb-n6 v-sheet 
-            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: rgb(233, 30, 99); border-color: rgb(233, 30, 99);">
+            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #F8BBD0; border-color: rgb(233, 30, 99);">
             
             <div id="chart">
-              <apexchart type="line" height="200" :options="chartOptions" :series="series"></apexchart>
+              <apexchart type="line" height="200" :options="chartOptions" :series="series" ></apexchart>
             </div>
             
             </div>
@@ -34,7 +34,7 @@
             v-card--material--has-heading" 
             hover-reveal="">
             <div class="text-start v-card--material__heading mb-n6 v-sheet 
-            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #4caf50; border-color: #4caf50;">
+            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #A5D6A7; border-color: #4caf50;">
             
             <div>
               <apexchart type="pie" width="300" :options="piechartOptions" :series="pieseries"></apexchart>
@@ -57,7 +57,7 @@
             v-card--material--has-heading" 
             hover-reveal="">
             <div class="text-start v-card--material__heading mb-n6 v-sheet 
-            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #00cae3; border-color: #00cae3;">
+            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #BBDEFB; border-color: #00cae3;">
             
             <div>
               <apexchart height="200" type="bar" :options="barchartOptions" :series="barseries"></apexchart>
@@ -156,8 +156,8 @@ export default {
     line_quality:[], //piechart
     part_quality:[], //bar graph
     Line_id:"L01",
-    sct_model1:{},
-    sct_model2:{},
+    sct_model1:[50,25,12,32,18],
+    sct_model2:[40,20,10,30,20],
     pieUpdated: [],
     barUpdated: [],
     lineUpdated1: [],
@@ -196,11 +196,11 @@ export default {
     },
     series: [
             {
-              name: "Model 1",
+              name: "Model 2",
               data: [25,20,30,32,19]
             },
             {
-              name: "Model 2",
+              name: "Model 1",
               data: [18,14,16,8,10]
             }
     ],
@@ -292,18 +292,6 @@ methods:{
     }
   },
 
-  assignData() {
-    this.productivity_model1.forEach( (element) => { this.series[0].data.push(100) });
-    this.productivity_model1.forEach( (element) => { this.series[1].data.push(200) });
-    this.chartOptions = {
-      chart: {
-        id: 'vuechart-example',
-      },
-      xaxis: {
-        categories: ['Station 1','Station 2','Station 3','Station 4','Station 5'],
-      },
-    }      
-  },
 
   lineUpdate() {
     this.productivity_model1.forEach( (l1) => { let t1 = parseInt(l1.Avg);  this.lineUpdated1.push(t1) } )
@@ -333,11 +321,11 @@ methods:{
   },
 
   caldeviation() {
-    let c=0
-    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[c]) - parseInt(element.Avg); 
-      // console.log(parseInt(element.Avg)- parseInt(this.sct_model1[c]))
+    let d=0
+    this.productivity_model1.forEach( (element) => { element.Deviation = parseInt(this.sct_model1[d]) - parseInt(element.Avg); 
+      console.log(parseInt(element.Avg)- parseInt(this.sct_model1[d]))
       console.log(element.Deviation)
-      c++
+      d++
     })
   }
 
@@ -348,7 +336,7 @@ mounted: function () {
        this.func_pro()  
        this.func_line()
        this.func_part()
-       this.assignData()
+      
        setTimeout(this.lineUpdate,5000)
        setTimeout(this.pieUpdate,3000)
        setTimeout(this.barUpdate,5000)

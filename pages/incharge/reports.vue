@@ -10,7 +10,7 @@
             v-card--material--has-heading" 
             hover-reveal="">
             <div class="text-start v-card--material__heading mb-n6 v-sheet 
-            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: rgb(233, 30, 99); border-color: rgb(233, 30, 99);">
+            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #F8BBD0; border-color: rgb(233, 30, 99);">
             
             <div id="chart">
               <apexchart type="line" height="200" :options="chartOptions" :series="series"></apexchart>
@@ -34,7 +34,7 @@
             v-card--material--has-heading" 
             hover-reveal="">
             <div class="text-start v-card--material__heading mb-n6 v-sheet 
-            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color: #00cae3; border-color: #00cae3;">
+            theme--dark elevation-6 pa-7" style="width: 100%; height:270px; background-color:#BBDEFB; border-color: #00cae3;">
             
             <div>
               <apexchart height="200" type="bar" :options="barchartOptions" :series="barseries"></apexchart>
